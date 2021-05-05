@@ -1,0 +1,23 @@
+name: Build and Test
+
+# Triggers the workflow on push or pull request events but only for the master branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Node Modules
+        run: npm install
+      - name: Karma Tests
+        run: npm run test:ci
