@@ -5,6 +5,14 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    check: {
+      global: {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100
+      }
+   },
     customLaunchers: {
       ChromeHeadlessCustom: {
           base: 'ChromeHeadless',
