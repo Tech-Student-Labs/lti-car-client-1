@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.css']
 })
 export class AppComponent {
   title = 'lti-car-client-one';
