@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule} from '@angular/common/http/testing';
 import { StoreVehiclesService } from '../services/store-vehicles.service';
-import { of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import ApiResponse from '../shared/ApiResponse';
+import { tap } from 'rxjs/operators';
 
 describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
@@ -36,17 +37,8 @@ describe('StoreVehiclesService', () => {
   });
 
   it('getAll should return an error when given wrong format', () => {
-    let apiData = {vehicles: [{Model: "Mustang", Year:"2019", VINNumber: 1}]};
-    httpServiceSpy.get.and.returnValue(of(apiData));
-    expect(service.getAll().subscribe).toBeDefined();
-    service.getAll().subscribe( data => {
-      console.log(data);
-      console.log(apiData);
-      expect(data).toEqual(apiData as any);
-      expect(data).toBeTruthy();
-      expect(data).toBeDefined();
-    });
-
-    httpServiceSpy.get.and.returnValue(of(apiData));
+    httpServiceSpy.get.and.returnValue(throwError("bad data"));
+    service.getAll().subscribe()
+    expect(service.status).toEqual("bad data");
   });
 });
