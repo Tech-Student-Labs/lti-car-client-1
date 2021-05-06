@@ -35,5 +35,16 @@ export class StoreVehiclesService {
         catchError(data => of(data))
       );
   }
+
+    /*****************************************
+  * Method Name: addVehicle()              *
+  * Parameters: *FILL IN UPON DEFINITION*  *
+  * Return: NONE                           *
+  * -------------------------------------- *
+  * Description:                           *
+  *****************************************/
+  addVehicle() : void {
+    //TODO update when endpoint is configured
+  }
 }
 

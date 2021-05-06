@@ -41,4 +41,10 @@ describe('StoreVehiclesService', () => {
     service.getAll().subscribe()
     expect(service.status).toEqual("bad data");
   });
+
+  it('addVehicle should be stubbed', () => {
+    service.addVehicle();
+    expect(true).toBeTruthy();
+    //TODO update test when function is created
+  });
 });
