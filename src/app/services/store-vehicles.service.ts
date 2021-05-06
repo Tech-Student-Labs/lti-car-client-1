@@ -10,7 +10,7 @@ import { Observable, of } from 'rxjs';
 export class StoreVehiclesService {
 
   // Endpoint to the API URL
-  private endpoint: string = 'our .net/c# database endpoint';
+  private endpoint: string = '../../assets/vehicle.json';
   public status: any;
 
   constructor(private http: HttpClient) { }
@@ -36,7 +36,7 @@ export class StoreVehiclesService {
       );
   }
 
-    /*****************************************
+  /*****************************************
   * Method Name: addVehicle()              *
   * Parameters: *FILL IN UPON DEFINITION*  *
   * Return: NONE                           *

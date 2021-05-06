@@ -1,0 +1,19 @@
+{
+  "vehicles": [
+  {
+    "Model": "Mustang", "Year":"2019", "VINNumber":"q98f7hq4"
+  },
+  {
+    "Model": "Camero", "Year":"2009", "VINNumber":"123456"
+  },
+  {
+    "Model": "Tesla", "Year":"2021", "VINNumber":"7891011"
+  },
+  {
+    "Model": "Accord", "Year":"6789", "VINNumber":"t5yn89q"
+  },
+  {
+    "Model": "Charger", "Year":"1998", "VINNumber":"467445"
+  }
+  ]
+}
