@@ -10,7 +10,7 @@ import { MockVehicleService } from '../models/mock-vehicle-service';
 describe('VehicleListComponent', () => {
   let component: VehicleListComponent;
   let fixture: ComponentFixture<VehicleListComponent>;
-   let service: StoreVehiclesService;
+  let service: StoreVehiclesService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,5 +34,9 @@ describe('VehicleListComponent', () => {
 
   it('should get vehicle data', () => {
     expect(component.inventory.length).toEqual(5);
+  });
+
+  it('should render 5 cards', () => {
+    expect(fixture.nativeElement.querySelectorAll('.card').length).toEqual(5);
   });
 });
