@@ -14,7 +14,7 @@ describe('StoreVehiclesService', () => {
       imports: [
         HttpClientTestingModule
       ]
-    });    
+    });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = new StoreVehiclesService(httpServiceSpy as any)
   });
@@ -24,7 +24,7 @@ describe('StoreVehiclesService', () => {
   });
 
   it('getAll should return values', () => {
-    let apiData: ApiResponse = {vehicles: [{Model: "Mustang", Year:"2019", VINNumber:"q98f7hq4"}]};
+    let apiData: ApiResponse = {vehicles: [{model: "Mustang", year:"2019", vin:"q98f7hq4"}]};
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getAll()).toBeDefined();
     service.getAll().subscribe( data => {
