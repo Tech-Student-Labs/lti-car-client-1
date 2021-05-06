@@ -1,3 +1,5 @@
+import { VehicleBasic } from "../models/vehicle-basic";
+
 export default interface ApiResponse {
-    vehicles: {Model: string, Year: string, VINNumber: string}[];
+    vehicles: VehicleBasic[];
 }

@@ -1,19 +1,19 @@
 {
   "vehicles": [
   {
-    "Model": "Mustang", "Year":"2019", "VINNumber":"q98f7hq4"
+    "model": "Mustang", "year":"2019", "vin":"q98f7hq4"
   },
   {
-    "Model": "Camero", "Year":"2009", "VINNumber":"123456"
+    "model": "Camero", "year":"2009", "vin":"123456"
   },
   {
-    "Model": "Tesla", "Year":"2021", "VINNumber":"7891011"
+    "model": "Tesla", "year":"2021", "vin":"7891011"
   },
   {
-    "Model": "Accord", "Year":"6789", "VINNumber":"t5yn89q"
+    "model": "Accord", "year":"6789", "vin":"t5yn89q"
   },
   {
-    "Model": "Charger", "Year":"1998", "VINNumber":"467445"
+    "model": "Charger", "year":"1998", "vin":"467445"
   }
   ]
 }

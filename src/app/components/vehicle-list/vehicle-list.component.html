@@ -1,1 +1,10 @@
-  <div *ngFor="let vehicle of inventory"></div>
+
+
+<div class="container">
+  <div class="row">
+      <app-vehicle-details class="card col-4" *ngFor="let vehicle of inventory" [vehicle]="vehicle"></app-vehicle-details>
+  </div>
+</div>
+
+
+

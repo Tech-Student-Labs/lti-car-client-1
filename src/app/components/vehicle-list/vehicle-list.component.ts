@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Vehicle } from 'src/app/models/vehicle';
+import { VehicleBasic } from 'src/app/models/vehicle-basic';
 import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 export class VehicleListComponent implements OnInit {
 
 //
-  inventory: any = [];
+  inventory: VehicleBasic[] = [];
 
   constructor(private vehicleService: StoreVehiclesService) { }
 

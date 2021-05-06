@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import ApiResponse from '../shared/ApiResponse';
 import { Observable, of } from 'rxjs';
+import { VehicleBasic } from '../models/vehicle-basic';
 
 @Injectable({
   providedIn: 'root'
