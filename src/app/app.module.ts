@@ -5,10 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/landing-page/landing-page.component';
 import { VehicleModule } from './vehicle.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
