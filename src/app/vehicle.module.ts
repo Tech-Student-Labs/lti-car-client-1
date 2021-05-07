@@ -5,6 +5,7 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-details.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-de
   ],
   declarations: [
     VehicleListComponent,
-    VehicleDetailsComponent
+    VehicleDetailsComponent,
+    HistoryComponent
   ],
   providers: [
     StoreVehiclesService
