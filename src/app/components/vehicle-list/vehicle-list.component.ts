@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleBasic } from 'src/app/models/vehicle-basic';
+import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 
 @Component({
@@ -13,13 +14,13 @@ import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 export class VehicleListComponent implements OnInit {
 
 //
-  inventory: VehicleBasic[] = [];
+  inventory: VehicleResponse[] = [];
 
   constructor(private vehicleService: StoreVehiclesService) { }
 
   ngOnInit(): void {
     this.vehicleService.getAll().subscribe(data => {
-      this.inventory = data.vehicles;
+      this.inventory = data;
     });
   }
 
