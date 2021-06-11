@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import ApiResponse from '../shared/ApiResponse';
 import { Observable, of } from 'rxjs';
 import { VehicleBasic } from '../models/vehicle-basic';
+import { VehicleResponse } from '../models/vehicle-response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { VehicleBasic } from '../models/vehicle-basic';
 export class StoreVehiclesService {
 
   // Endpoint to the API URL
-  private endpoint: string = '../../assets/vehicle.json';
+  private endpoint: string = 'http://localhost:5000/vehicle';
   public status: any;
 
   constructor(private http: HttpClient) { }

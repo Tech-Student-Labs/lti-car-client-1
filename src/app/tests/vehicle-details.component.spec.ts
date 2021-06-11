@@ -5,6 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { VehicleDetailsComponent } from '../components/vehicle-details/vehicle-details.component';
 import { VehicleBasic } from '../models/vehicle-basic';
+import { VehicleResponse } from '../models/vehicle-response';
 
 describe('VehicleDetailsComponent', () => {
   let component: VehicleDetailsComponent;
@@ -20,7 +21,7 @@ describe('VehicleDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VehicleDetailsComponent);
     component = fixture.componentInstance;
-    component.vehicle = new VehicleBasic("asd","asd","asd");
+    component.vehicle = new VehicleResponse(0,"","",0,"",0);
     fixture.detectChanges();
   });
 
@@ -37,6 +38,6 @@ describe('VehicleDetailsComponent', () => {
   });
 
   it('should render vehicle vin', () => {
-    expect(fixture.nativeElement.querySelector('#vehicle-vin')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#vehicle-vinNumber')).toBeTruthy();
   });
 });
