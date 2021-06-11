@@ -1,5 +1,5 @@
-import { VehicleResponse } from "../models/vehicle-response";
+// import { VehicleResponse } from "../models/vehicle-response";
 
-export default interface ApiResponse {
-    vehicles: VehicleResponse[];
-}
+// export default interface ApiResponse {
+//     vehicles: VehicleResponse[];
+// }
