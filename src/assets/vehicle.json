@@ -1,19 +1,18 @@
-{
-  "vehicles": [
+[
   {
-    "model": "Mustang", "year":"2019", "vin":"q98f7hq4"
+    "id": 1, "make": "Ford", "model": "Mustang", "year":2019, "vinNumber":"q98f7hq4", "marketValue": 13999
   },
   {
-    "model": "Camero", "year":"2009", "vin":"123456"
+    "id": 2, "make": "Ford", "model": "Mustang", "year":2019, "vinNumber":"dfg56dfg", "marketValue": 13999
   },
   {
-    "model": "Tesla", "year":"2021", "vin":"7891011"
+    "id": 3, "make": "Ford", "model": "Mustang", "year":2019, "vinNumber":"jhfser4", "marketValue": 13999
   },
   {
-    "model": "Accord", "year":"6789", "vin":"t5yn89q"
+    "id": 4, "make": "Ford", "model": "Mustang", "year":2019, "vinNumber":"jsfgh45", "marketValue": 13999
   },
   {
-    "model": "Charger", "year":"1998", "vin":"467445"
+    "id": 5, "make": "Ford", "model": "Mustang", "year":2019, "vinNumber":"sdfgh56g", "marketValue": 139992
   }
   ]
-}
+
