@@ -26,9 +26,9 @@ export class StoreVehiclesService {
   * information from the endpoint and      *
   * return the data as an observable       *
   *****************************************/
-  getAll() : Observable<VehicleResponse[]> {
+  getAll() : Observable<ApiResponse> {
       // get<ApiReponse>(endpoint)
-      return this.http.get<VehicleResponse[]>(this.endpoint)
+      return this.http.get<ApiResponse>(this.endpoint)
       .pipe(
         tap(
           success => {this.status = success},

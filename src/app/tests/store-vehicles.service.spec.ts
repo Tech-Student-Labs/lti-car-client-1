@@ -4,6 +4,7 @@ import { StoreVehiclesService } from '../services/store-vehicles.service';
 import { Observable, of, throwError } from 'rxjs';
 import ApiResponse from '../shared/ApiResponse';
 import { tap } from 'rxjs/operators';
+import { VehicleResponse } from '../models/vehicle-response';
 
 describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
@@ -24,7 +25,7 @@ describe('StoreVehiclesService', () => {
   });
 
   it('getAll should return values', () => {
-    let apiData: ApiResponse = {vehicles: [{model: "Mustang", year:"2019", vin:"q98f7hq4"}]};
+    let apiData: ApiResponse = {vehicles: [{id : 1, make: "Ford", model: "Mustang", year:2019, vinNumber:"q98f7hq4", marketValue: 12000}]};
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getAll()).toBeDefined();
     service.getAll().subscribe( data => {
