@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StoreVehiclesService } from '../services/store-vehicles.service';
 import { Observable, of, throwError } from 'rxjs';
 //import ApiResponse from '../shared/ApiResponse';
@@ -9,7 +9,7 @@ import { Vehicle } from '../models/vehicle';
 
 describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
-  let httpServiceSpy: {get: jasmine.Spy};
+  let httpServiceSpy: {get: jasmine.Spy, post: jasmine.Spy, put: jasmine.Spy, delete: jasmine.Spy};
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe('StoreVehiclesService', () => {
         HttpClientTestingModule
       ]
     });
-    httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     service = new StoreVehiclesService(httpServiceSpy as any)
   });
 
@@ -45,8 +45,53 @@ describe('StoreVehiclesService', () => {
   });
 
   it('addVehicle should be stubbed', () => {
-    service.addVehicle();
-    expect(true).toBeTruthy();
-    //TODO update test when function is created
+    let vehicle: VehicleResponse = new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000);
+    httpServiceSpy.post.and.returnValue(of(vehicle));
+    expect(service.addVehicle(vehicle)).toBeDefined();
+    service.addVehicle(vehicle).subscribe(data => {
+      expect(data).toEqual(vehicle);
+      expect(data).toBeTruthy();
+      expect(data).toBeDefined();
+    });
+  });
+
+  it('addVehicle should return an error when given wrong format', () => {
+    httpServiceSpy.post.and.returnValue(throwError("bad data"));
+    service.addVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
+    expect(service.status).toEqual("bad data");
+  });
+
+  it('updateVehicle should be stubbed', () => {
+    let vehicle: VehicleResponse = new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000);
+    httpServiceSpy.put.and.returnValue(of(vehicle));
+    expect(service.updateVehicle(vehicle)).toBeDefined();
+    service.updateVehicle(vehicle).subscribe(data => {
+      expect(data).toEqual(vehicle);
+      expect(data).toBeTruthy();
+      expect(data).toBeDefined();
+    });
+  });
+
+  it('updateVehicle should return an error when given wrong format', () => {
+    httpServiceSpy.put.and.returnValue(throwError("bad data"));
+    service.updateVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
+    expect(service.status).toEqual("bad data");
+  });
+
+  it('deleteVehicle should be stubbed', () => {
+    let vehicle: VehicleResponse = new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000);
+    httpServiceSpy.delete.and.returnValue(of(vehicle));
+    expect(service.deleteVehicle(1)).toBeDefined();
+    service.deleteVehicle(1).subscribe(data => {
+      expect(data).toEqual(vehicle);
+      expect(data).toBeTruthy();
+      expect(data).toBeDefined();
+    });
+  });
+
+  it('deleteVehicle should return an error when given wrong format', () => {
+    httpServiceSpy.delete.and.returnValue(throwError("bad data"));
+    service.deleteVehicle(-1).subscribe()
+    expect(service.status).toEqual("bad data");
   });
 });

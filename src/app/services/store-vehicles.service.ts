@@ -20,14 +20,14 @@ export class StoreVehiclesService {
   /*****************************************
   * Method Name: getAll()                  *
   * Parameters: NONE                       *
-  * Return: Observable of type ApiResponse *
+  * Return: Observable of type             *
+  * VehicleResponse                        *
   * -------------------------------------- *
   * Description: This method will get      *
   * information from the endpoint and      *
   * return the data as an observable       *
   *****************************************/
   getAll() : Observable<VehicleResponse[]> {
-      // get<ApiReponse>(endpoint)
       return this.http.get<VehicleResponse[]>(this.endpoint)
       .pipe(
         tap(
@@ -40,13 +40,70 @@ export class StoreVehiclesService {
 
   /*****************************************
   * Method Name: addVehicle()              *
-  * Parameters: *FILL IN UPON DEFINITION*  *
-  * Return: NONE                           *
+  * Parameters: an object of type          *
+  * VehicleResponse                        *
+  * Return: Observable of type             *
+  * VehicleResponse                        *
   * -------------------------------------- *
-  * Description:                           *
+  * Description: This method will add      *
+  * information from the endpoint and      *
+  * return the data as an observalbe       *
   *****************************************/
-  addVehicle() : void {
-    //TODO update when endpoint is configured
+  addVehicle(vehicle: VehicleResponse) : Observable<VehicleResponse> {
+    const headers = { 'content-type': 'application/json'};
+    const body = JSON.stringify(vehicle);
+    return this.http.post<VehicleResponse>(this.endpoint, body, {'headers': headers})
+      .pipe(
+        tap(
+          success => {this.status = success},
+          err => {this.status = err}
+        ),
+        catchError(data => of(data))
+      );
+  }
+
+  /*****************************************
+  * Method Name: updateVehicle()           *
+  * Parameters: an object of type          *
+  * VehicleResponse                        *
+  * Return: Observable of type             *
+  * VehicleResponse                        *
+  * -------------------------------------- *
+  * Description: This method will update   *
+  * information from the endpoint and      *
+  * return the data as an observalbe       *
+  *****************************************/
+  updateVehicle(vehicle: VehicleResponse) : Observable<VehicleResponse> {
+    return this.http.put<VehicleResponse>(this.endpoint, vehicle)
+      .pipe(
+        tap(
+          success => {this.status = success},
+          err => {this.status = err}
+        ),
+        catchError(data => of(data))
+      );
+  }
+
+  /*****************************************
+  * Method Name: deleteVehicle()           *
+  * Parameters: a number representing id   *
+  * value for a vehicle inside the         *
+  * database                               *
+  * Return: Observable of type             *
+  * VehicleResponse                        *
+  * -------------------------------------- *
+  * Description: This method will remove   *
+  * information from the endpoint and      *
+  * return the data as an observalbe       *
+  *****************************************/
+  deleteVehicle(id: number) : Observable<VehicleResponse> {
+    return this.http.delete<VehicleResponse>(`${this.endpoint}/${id}`)
+      .pipe(
+        tap(
+          success => {this.status = success},
+          err => {this.status = err}
+        ),
+        catchError(data => of(data))
+      );
   }
 }
-

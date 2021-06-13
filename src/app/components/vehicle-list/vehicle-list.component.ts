@@ -14,14 +14,15 @@ import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 })
 export class VehicleListComponent implements OnInit {
 
-//
   inventory: VehicleResponse[] = [];
+  loadingStatus: string = "Loading...";
 
   constructor(private vehicleService: StoreVehiclesService) { }
 
   ngOnInit(): void {
     this.vehicleService.getAll().subscribe(data => {
       this.inventory = data;
+      this.loadingStatus = "";
     });
   }
 
