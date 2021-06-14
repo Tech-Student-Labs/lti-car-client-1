@@ -4,9 +4,9 @@ import { Observable, of } from "rxjs";
 import { VehicleResponse } from "./vehicle-response";
 import { Injectable } from "@angular/core";
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 export class MockVehicleService extends StoreVehiclesService {
   getAll(): Observable<any>{
     return of(CARS);

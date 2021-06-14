@@ -6,7 +6,6 @@ import { Observable, of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { VehicleResponse } from '../models/vehicle-response';
 import { Vehicle } from '../models/vehicle';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
@@ -17,7 +16,6 @@ describe('StoreVehiclesService', () => {
       imports: [
         HttpClientTestingModule
       ],
-      schemas: [NO_ERRORS_SCHEMA]
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     service = new StoreVehiclesService(httpServiceSpy as any)
