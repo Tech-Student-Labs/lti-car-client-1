@@ -36,22 +36,4 @@ describe('NavbarComponent', () => {
   it('should have a logout button', () => {
     expect(fixture.nativeElement.querySelector('#logout')).toBeTruthy();
   });
-
-  it('component should have a login method', () => {
-    spyOn(console, 'log');
-    component.LogIn();
-    expect(console.log).toHaveBeenCalled();
-  });
-  
-  it('component should have a signup method', () => {
-    spyOn(console, 'log');
-    component.SignUp();
-    expect(console.log).toHaveBeenCalled();
-  });
-  
-  it('component should have a logout method', () => {
-    spyOn(console, 'log');
-    component.LogOut();
-    expect(console.log).toHaveBeenCalled();
-  });
 });

@@ -12,21 +12,4 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  //TODO: give users the ability to signup, login and logout
-  public LogIn(): void
-  {
-    console.log('login called');
-  }
-
-  public SignUp(): void
-  {
-    console.log('signup called');
-  }
-
-  public LogOut(): void
-  {
-    console.log('logout called');
-  }
-
 }

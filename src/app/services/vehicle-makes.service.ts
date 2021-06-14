@@ -15,15 +15,15 @@ export class VehicleMakesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMakes(): Observable<object>
-  {
-    return this.http.get(this.apiMakes)
-      .pipe(
-        tap(
-          success => {this.status = success},
-          err => {this.status = err}
-        ),
-        catchError(data => of(data))
-      );
-  }
+  // getAllMakes(): Observable<object>
+  // {
+  //   return this.http.get(this.apiMakes)
+  //     .pipe(
+  //       tap(
+  //         success => {this.status = success},
+  //         err => {this.status = err}
+  //       ),
+  //       catchError(data => of(data))
+  //     );
+  // }
 }

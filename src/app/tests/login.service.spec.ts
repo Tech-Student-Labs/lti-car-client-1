@@ -6,12 +6,12 @@ import { Observable, of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { VehicleResponse } from '../models/vehicle-response';
 import { Vehicle } from '../models/vehicle';
-import { SignupService } from '../services/signup.service';
-import { UserSignup } from '../models/user-signup';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { LoginService } from '../services/login.service';
+import { UserLogin } from '../models/user-login';
 
 describe('Service: Signup', () => {
-  let service: SignupService;
+  let service: LoginService;
   let httpServiceSpy: {post: jasmine.Spy};
 
   beforeEach(async() => {
@@ -22,25 +22,25 @@ describe('Service: Signup', () => {
       schemas: [NO_ERRORS_SCHEMA]
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    service = new SignupService(httpServiceSpy as any);
+    service = new LoginService(httpServiceSpy as any);
   });
 
-  it('should create', () => {
+  it('should cfreate', () => {
     expect(service).toBeTruthy();
   });
 
   it('should stub signup endpoint', () => {
-    let user: UserSignup = new UserSignup('email@noemail.com', 'username', 'password', 'bob', 'ross');
+    let user: UserLogin = new UserLogin('username', 'password');
     httpServiceSpy.post.and.returnValue(of(user));
-    expect(service.SignupUser(user)).toBeDefined();
-    service.SignupUser(user).subscribe(data => {
+    expect(service.Login(user)).toBeDefined();
+    service.Login(user).subscribe(data => {
       expect(data).toEqual(user);
     });
   });
 
   it('SignupUser should throw error when passed bad data', () => {
     httpServiceSpy.post.and.returnValue(throwError("bad data"));
-    service.SignupUser(new UserSignup('email', 'username', 'password', 'bob', 'ross')).subscribe()
+    service.Login(new UserLogin('username', 'password')).subscribe()
     expect(service.status).toEqual("bad data");
   });
 });
