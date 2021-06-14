@@ -4,6 +4,8 @@
       <div *ngIf="inventory.length==0">
         <h3>No vehicles available at this time.  Please check back soon.</h3>
       </div>
-      <app-vehicle-details class="card col-4" *ngFor="let vehicle of inventory" [vehicle]="vehicle"></app-vehicle-details>
+      <div *ngIf="doneLoading==true">
+        <app-vehicle-details class="card col-4" *ngFor="let vehicle of inventory" [vehicle]="vehicle"></app-vehicle-details>
+      </div>
   </div>
 </div>

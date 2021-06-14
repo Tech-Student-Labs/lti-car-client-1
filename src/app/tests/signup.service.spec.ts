@@ -8,19 +8,21 @@ import { VehicleResponse } from '../models/vehicle-response';
 import { Vehicle } from '../models/vehicle';
 import { SignupService } from '../services/signup.service';
 import { UserSignup } from '../models/user-signup';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('Service: Signup', () => {
   let service: SignupService;
   let httpServiceSpy: {post: jasmine.Spy};
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    service = new SignupService(httpServiceSpy as any)
+    service = new SignupService(httpServiceSpy as any);
   });
 
   it('should create', () => {
@@ -36,9 +38,9 @@ describe('Service: Signup', () => {
     });
   });
 
-  it('SignupUser should throw error when passed bad data', () => {
-    httpServiceSpy.post.and.returnValue(throwError("bad data"));
-    service.SignupUser(new UserSignup('email', 'username', 'password', 'bob', 'ross')).subscribe()
+  it('SignupUser should throw error when passed bad data', async() => {
+    await httpServiceSpy.post.and.returnValue(throwError("bad data"));
+    await service.SignupUser(new UserSignup('email', 'username', 'password', 'bob', 'ross')).subscribe()
     expect(service.status).toEqual("bad data");
-  })
+  });
 });
