@@ -16,7 +16,14 @@
           <a class="nav-link" routerLink="history">History</a>
         </li>
       </ul>
-      
+      <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <button class="btn btn-outline-info" id="submit-vehicle" routerLink="submitvehicle">Sell Us Your Vehicle</button>
+      </div>
+      <div class="d-flex">
+        <button class="btn btn-success me-1" id="login" (click)="LogIn()" routerLink="login">Log In</button>
+        <button class="btn btn-primary me-1" id="signup" (click)="SignUp()" routerLink="signup">Sign Up</button>
+        <button class="btn btn-danger me-4" id="logout" (click)="LogOut()">Log Out</button>
+      </div>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
