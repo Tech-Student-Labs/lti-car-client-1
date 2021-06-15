@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
+import { VehicleResponse } from 'src/app/models/vehicle-response';
 
 @Component({
   selector: 'app-submitted-vehicle-details',
@@ -8,7 +9,7 @@ import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
 })
 export class SubmittedVehicleDetailsComponent implements OnInit {
 
- @Input() vehicle: SubmittedVehicles = new SubmittedVehicles(new Date(),0,"","",0,"");
+ @Input() vehicle: SubmittedVehicles = new SubmittedVehicles(new Date(),new VehicleResponse(0,"","",0,"",0));
 
 
   constructor() { }
