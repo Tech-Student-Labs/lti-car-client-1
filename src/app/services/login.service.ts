@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { token } from '../models/TokenDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,12 @@ export class LoginService {
 
   api: string = "http://localhost:5000/User/Login";
   status: any;
-
-  LoginUser(email: string, password: string): Observable<string>
+  
+  handleError(error: HttpErrorResponse) {
+    return throwError(error);
+}
+  LoginUser(email: string, password: string): Observable<token>
   {
-    return this.http.post<string>(this.api, {email: email, password: password});
+    return this.http.post<token>(this.api, {email: email, password: password}).pipe(catchError(this.handleError));
   }
 }
