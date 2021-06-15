@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, NgModel, FormBuilder, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -7,18 +8,25 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./loginpage.component.css']
 })
 export class LoginpageComponent implements OnInit {
-
-  constructor(private loginService: LoginService) { }
+  public loginGroup!: FormGroup;
+  constructor(private loginService: LoginService,private fb: FormBuilder) { }
 
   public message: string = '';
 
   ngOnInit() {
-  }
-
-  LoginUser(username: string, password: string): void
-  {
-    this.loginService.LoginUser(username, password).subscribe(data => {
-      this.message = data;
+    this.loginGroup = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+  LoginUser(): void
+  {
+    this.loginService.LoginUser(this.loginGroup?.value.email, this.loginGroup?.value.password).subscribe(data => {
+      this.message = data;
+      console.log(data);
+    });
+    console.log(this.loginGroup?.value);
+  }
+
 }
