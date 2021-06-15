@@ -7,7 +7,7 @@ import { LoginpageComponent } from '../components/loginpage/loginpage.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 // import { MockSignupService } from '../models/mock-signup-service';
 
-describe('Login Component', () => {
+describe('Loginpage Component', () => {
   let component: LoginpageComponent;
   let fixture: ComponentFixture<LoginpageComponent>;
 

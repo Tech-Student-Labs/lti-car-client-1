@@ -5,7 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoginService } from '../services/login.service';
 
-describe('Service: Signup', () => {
+describe('Service: Login', () => {
   let service: LoginService;
   let httpServiceSpy: {post: jasmine.Spy};
 
