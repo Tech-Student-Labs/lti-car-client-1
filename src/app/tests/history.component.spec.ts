@@ -27,4 +27,16 @@ describe('HistoryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should get vehicle data', () => {
+    expect(component.inventory.length).toEqual(5);
+  });
+
+  it('should render 5 cards', () => {
+    expect(fixture.nativeElement.querySelectorAll('.card').length).toEqual(5);
+  });
+
+  it('should have a loading status element', () => {
+    expect(fixture.nativeElement.querySelector('#loadingStatus')).toBeTruthy();
+  });
 });
