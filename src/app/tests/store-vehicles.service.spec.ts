@@ -11,11 +11,11 @@ describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
   let httpServiceSpy: {get: jasmine.Spy, post: jasmine.Spy, put: jasmine.Spy, delete: jasmine.Spy};
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
-      ]
+      ],
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
     service = new StoreVehiclesService(httpServiceSpy as any)
@@ -38,9 +38,9 @@ describe('StoreVehiclesService', () => {
     });
   });
 
-  it('getAll should return an error when given wrong format', () => {
-    httpServiceSpy.get.and.returnValue(throwError("bad data"));
-    service.getAll().subscribe()
+  it('getAll should return an error when given wrong format', async() => {
+    await httpServiceSpy.get.and.returnValue(throwError("bad data"));
+    await service.getAll().subscribe()
     expect(service.status).toEqual("bad data");
   });
 
@@ -55,9 +55,9 @@ describe('StoreVehiclesService', () => {
     });
   });
 
-  it('addVehicle should return an error when given wrong format', () => {
-    httpServiceSpy.post.and.returnValue(throwError("bad data"));
-    service.addVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
+  it('addVehicle should return an error when given wrong format', async() => {
+    await httpServiceSpy.post.and.returnValue(throwError("bad data"));
+    await service.addVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
     expect(service.status).toEqual("bad data");
   });
 
@@ -72,9 +72,9 @@ describe('StoreVehiclesService', () => {
     });
   });
 
-  it('updateVehicle should return an error when given wrong format', () => {
-    httpServiceSpy.put.and.returnValue(throwError("bad data"));
-    service.updateVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
+  it('updateVehicle should return an error when given wrong format', async() => {
+    await httpServiceSpy.put.and.returnValue(throwError("bad data"));
+    await service.updateVehicle(new VehicleResponse(1, "ford", "f150", 2011, "abc123", 50000)).subscribe()
     expect(service.status).toEqual("bad data");
   });
 
@@ -89,9 +89,9 @@ describe('StoreVehiclesService', () => {
     });
   });
 
-  it('deleteVehicle should return an error when given wrong format', () => {
-    httpServiceSpy.delete.and.returnValue(throwError("bad data"));
-    service.deleteVehicle(-1).subscribe()
+  it('deleteVehicle should return an error when given wrong format', async() => {
+    await httpServiceSpy.delete.and.returnValue(throwError("bad data"));
+    await service.deleteVehicle(-1).subscribe()
     expect(service.status).toEqual("bad data");
   });
 });

@@ -16,6 +16,7 @@ export class VehicleListComponent implements OnInit {
 
   inventory: VehicleResponse[] = [];
   loadingStatus: string = "Loading...";
+  doneLoading: boolean = false;
 
   constructor(private vehicleService: StoreVehiclesService) { }
 
@@ -23,6 +24,7 @@ export class VehicleListComponent implements OnInit {
     this.vehicleService.getAll().subscribe(data => {
       this.inventory = data;
       this.loadingStatus = "";
+      this.doneLoading = true;
     });
   }
 
