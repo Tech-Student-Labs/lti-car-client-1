@@ -24,10 +24,10 @@ describe('Service: Signup', () => {
   });
 
   it('should stub LoginUser', () => {
-    httpServiceSpy.post.and.returnValue(of('Added user successfully'));
+    httpServiceSpy.post.and.returnValue(of('Signed in user successfully'));
     expect(service.LoginUser('', '')).toBeTruthy();
     service.LoginUser('', '').subscribe(data => {
-      expect(data).toEqual('Added user successfully');
+      expect(data).toEqual('Signed in user successfully');
     });
   });
 });
