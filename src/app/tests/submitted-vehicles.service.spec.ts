@@ -28,7 +28,7 @@ describe('SubmittedVehiclesService', () => {
   });
 
   it('getByUserId should return values', () => {
-    let apiData: SubmittedVehicles[] =  [{date: new Date(), id : 1, make: "Ford", model: "Mustang", year:2019, vinNumber:"q98f7hq4"}];
+    let apiData: SubmittedVehicles[] =  [{timeStamp: new Date(), vehicle: new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 1111)}];
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getByUserId()).toBeDefined();
     service.getByUserId().subscribe( data => {
