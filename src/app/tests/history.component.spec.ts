@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryComponent } from '../components/history/history.component';
+import { MockSubmittedVehicleService } from '../models/mock-submitted-vehicle-service';
+import { SubmittedVehiclesService } from '../services/submitted-vehicles.service';
 
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
@@ -8,7 +11,9 @@ describe('HistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ]
+      declarations: [ HistoryComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [{provide:SubmittedVehiclesService, useClass: MockSubmittedVehicleService}]
     })
     .compileComponents();
   });
