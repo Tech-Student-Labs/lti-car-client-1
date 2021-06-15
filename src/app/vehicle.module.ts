@@ -6,6 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-details.component';
 import { HistoryComponent } from './components/history/history.component';
+import { SubmittedVehicleDetailsComponent } from './components/submitted-vehicle-details/submitted-vehicle-details.component';
+import { SubmittedVehiclesService } from './services/submitted-vehicles.service';
 
 @NgModule({
   imports: [
@@ -17,10 +19,12 @@ import { HistoryComponent } from './components/history/history.component';
   declarations: [
     VehicleListComponent,
     VehicleDetailsComponent,
-    HistoryComponent
+    HistoryComponent,
+    SubmittedVehicleDetailsComponent
   ],
   providers: [
-    StoreVehiclesService
+    StoreVehiclesService,
+    SubmittedVehiclesService
   ]
 })
 export class VehicleModule { }
