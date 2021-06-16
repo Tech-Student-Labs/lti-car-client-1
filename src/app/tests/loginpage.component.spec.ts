@@ -16,7 +16,6 @@ import { token } from '../models/TokenDTO';
 describe('Loginpage Component', () => {
   let component: LoginpageComponent;
   let fixture: ComponentFixture<LoginpageComponent>;
-  // let httpServiceSpy: {get: jasmine.Spy, post: jasmine.Spy, put: jasmine.Spy, delete: jasmine.Spy};
     
 
   beforeEach(async () => {
@@ -24,7 +23,6 @@ describe('Loginpage Component', () => {
       declarations: [ LoginpageComponent ],
       imports: [HttpClientTestingModule],
       providers: [FormBuilder, LoginService]
-      //providers: [{provide: SignupService, useClass: MockSignupService}]
     })
     .compileComponents();
   });
@@ -33,8 +31,6 @@ describe('Loginpage Component', () => {
     fixture = TestBed.createComponent(LoginpageComponent);
     let service = TestBed.inject(LoginService);
     component = fixture.componentInstance;
-    // httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
-    // service = new StoreVehiclesService(httpServiceSpy as any)
     fixture.autoDetectChanges();
   });
 
@@ -47,21 +43,6 @@ describe('Loginpage Component', () => {
     expect(component.message).toEqual('');
   });
 
-  // describe('when service returns an error ', () => {
-  //   let app;
-  //   const testError = {
-  //       status: 406,
-  //       error: {
-  //           message: 'Test 406 error'
-  //       }
-  //   };
-
-  //   beforeEach(async(() => {
-  //     const fixture = TestBed.createComponent(LoginpageComponent);
-  //     app = fixture.componentInstance;
-  //     spyOn(LoginService, 'LoginUser').and.returnValue(Observable.throw(testError));
-  // }));
-  // })
   it('should throw error when LoginUser is called with ', () => {
     const xService = fixture.debugElement.injector.get(LoginService);
     const mockCall = spyOn(xService,'LoginUser').and.returnValue(throwError({status: 404, error: {Message: "Login Failed"}}));
