@@ -22,15 +22,13 @@ export class LoginpageComponent implements OnInit {
 
   LoginUser(): void
   {
-    this.loginService.LoginUser(this.loginGroup?.value.email, this.loginGroup?.value.password).subscribe(
+    this.loginService.LoginUser(this.loginGroup.value.email, this.loginGroup.value.password).subscribe(
       (data:token)=>{
         localStorage.setItem('token',data.token);
         this.message = "Login Successful";
-        console.log("Login Successful");
       },
       err =>{
       this.message = err.error.Message;
-      console.log(err.error.Message);
     });
 
   }
