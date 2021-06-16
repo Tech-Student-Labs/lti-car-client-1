@@ -51,6 +51,31 @@ export class SubmittedVehiclesService {
         catchError((data) => of(data))
       );
   }
+
+  AddVehicleSubmission(submission: SubmittedVehicles): Observable<string>
+  {
+    var token = localStorage.getItem('token');
+
+    var tokenHeader = new HttpHeaders({ Authorization: 'Bearer ' + token });
+    let tokenInfo = this.getDecodedAccessToken(token); // decode token
+    submission.userId = tokenInfo.UserID;
+    return this.http
+      .post<string>(this.endpoint, 
+        submission, {
+        headers: tokenHeader,
+      })
+      .pipe(
+        tap(
+          (success: any) => {
+            this.status = success;
+          },
+          (err: any) => {
+            this.status = err;
+          }
+        ),
+        catchError((data) => of(data))
+      );
+  }
 }
 
 // 'deleteUserRole(){   var userNamess = this.formDeleteRole.value.userName;   var oldRoless = this.formDeleteRole.value.oldRole;   var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')})   console.log(this.BaseURI+'/Profile/deleteRole',{params: {userName: userNamess,oldRole:oldRoless},headers:tokenHeader}); // http://localhost:53289/api/Profile/deleteRole?userName=hahaha&oldRole=EnGG_Admin return this.http.get(this.BaseURI+'/Profile/deleteRole',{params: {userName: userNamess,oldRole:oldRoless},headers:tokenHeader}); }

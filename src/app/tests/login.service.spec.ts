@@ -21,10 +21,6 @@ describe('Service: Login', () => {
     service = new LoginService(httpServiceSpy as any);
   });
 
-  it('should create', () => {
-    expect(service).toBeTruthy();
-  });
-
   it('should stub LoginUser', () => {
     httpServiceSpy.post.and.returnValue(of(token));
     expect(service.LoginUser('', '')).toBeTruthy();
