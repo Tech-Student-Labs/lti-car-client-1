@@ -3,10 +3,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { GetVehiclemakesService } from '../services/get-vehiclemakes.service';
+import { GetMarketvaluebymakemodelService } from '../services/get-marketvaluebymakemodel.service';
 
 describe('Service: GetAllVehicleMakes', () => {
-  let service: GetVehiclemakesService;
+  let service: GetMarketvaluebymakemodelService;
   let httpServiceSpy: {get: jasmine.Spy};
 
   beforeEach(async() => {
@@ -16,19 +16,10 @@ describe('Service: GetAllVehicleMakes', () => {
       ]
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new GetVehiclemakesService(httpServiceSpy as any);
+    service = new GetMarketvaluebymakemodelService(httpServiceSpy as any);
   });
 
-  it('should create', () => {
+  it('should ...', inject([GetMarketvaluebymakemodelService], (service: GetMarketvaluebymakemodelService) => {
     expect(service).toBeTruthy();
-  });
-
-  it('should stub GetAllMakes', () => {
-    var makes: string[] = ['epstein', 'didnt', 'kill', 'himself'];
-    httpServiceSpy.get.and.returnValue(of(makes));
-    expect(service.GetMakesByType('hi')).toBeTruthy();
-    service.GetMakesByType('hi').subscribe(data => {
-      expect(data).toEqual(makes);
-    });
-  });
+  }));
 });

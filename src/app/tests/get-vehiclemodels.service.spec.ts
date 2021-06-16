@@ -3,10 +3,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { GetVehiclemakesService } from '../services/get-vehiclemakes.service';
+import { GetVehiclemodelsService } from '../services/get-vehiclemodels.service';
 
-describe('Service: GetAllVehicleMakes', () => {
-  let service: GetVehiclemakesService;
+describe('Service: GetAllVehicleModels', () => {
+  let service: GetVehiclemodelsService;
   let httpServiceSpy: {get: jasmine.Spy};
 
   beforeEach(async() => {
@@ -16,19 +16,19 @@ describe('Service: GetAllVehicleMakes', () => {
       ]
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new GetVehiclemakesService(httpServiceSpy as any);
+    service = new GetVehiclemodelsService(httpServiceSpy as any);
   });
 
   it('should create', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should stub GetAllMakes', () => {
-    var makes: string[] = ['epstein', 'didnt', 'kill', 'himself'];
-    httpServiceSpy.get.and.returnValue(of(makes));
-    expect(service.GetMakesByType('hi')).toBeTruthy();
-    service.GetMakesByType('hi').subscribe(data => {
-      expect(data).toEqual(makes);
+  it('should stub GetAllModels', () => {
+    var models: string[] = ['epstein', 'didnt', 'kill', 'himself'];
+    httpServiceSpy.get.and.returnValue(of(models));
+    expect(service.GetAllModels('hi')).toBeTruthy();
+    service.GetAllModels('hi').subscribe(data => {
+      expect(data).toEqual(models);
     });
   });
 });

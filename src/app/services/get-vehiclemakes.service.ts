@@ -9,10 +9,10 @@ export class GetVehiclemakesService {
 
 constructor(private http: HttpClient) { }
 
-  api: string = "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json";
+  api: string = "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/";
 
-  GetAllMakes() : Observable<any>
+  GetMakesByType(type: string): Observable<any>
   {
-    return this.http.get<any>(this.api);
+    return this.http.get<any>(this.api + type + "?format=json");
   }
 }

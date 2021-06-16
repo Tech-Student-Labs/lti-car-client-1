@@ -5,6 +5,8 @@ import { DebugElement } from '@angular/core';
 
 import { SignupComponent } from '../components/signup/signup.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SignupService } from '../services/signup.service';
+import { of } from 'rxjs';
 // import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Signup Component', () => {
@@ -33,5 +35,12 @@ describe('Signup Component', () => {
   it('should stub SignupUser method in component', () => {
     component.SignupUser('', '', '', '', '');
     expect(component.message).toEqual('');
+  });
+
+  it('should set the token when LoginUser is called', () => {
+    const xService = fixture.debugElement.injector.get(SignupService);
+    const mockCall = spyOn(xService,'SignupUser').and.returnValue(of('signup successful'));
+    component.SignupUser('email', 'username', 'password', 'firstName', 'lastName');
+    expect(component.message).toBe("signup successful");
   });
 });

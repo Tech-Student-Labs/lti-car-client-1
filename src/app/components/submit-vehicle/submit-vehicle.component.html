@@ -1,26 +1,41 @@
 <div class="container">
-  <h2 class="my-3">Welcome back!</h2>
-  <form class="my-4">
-    <div class="row">
-      <div class="column">
-        <div class="form-group me-4">
-          <label class="me-3" id="make">Make</label>
-          <select class="form-control">
-            <option>1</option>
-            <option>1</option>
-            <option>1</option>
-          </select>
-        </div>
-        <div class="form-group me-4">
-          <label class="me-3" id="model">Model</label>
-          <select class="form-control">
-            <option>2</option>
-            <option>2</option>
-            <option>2</option>
-          </select>
+  <h2 class="my-3">Tell us about your vehicle!</h2>
+  <h6 class="errorMsg">{{ errorMsg }}</h6>
+  <div *ngIf="loadingStatus==true">
+    <h1>Loading...</h1>
+  </div>
+  <div *ngIf="loadingStatus==false">
+    <form class="my-4">
+      <div class="row">
+        <div class="column">
+          <div class="form-group me-4">
+            <label class="me-3" id="vehicletype">Vehicle type</label>
+            <select class="form-control" id="selecttype" (change)="GetMakesByType()">
+              <option value="">- select vehicle type -</option>
+              <option>Motorcycle</option>
+              <option>Car</option>
+              <option>Truck</option>
+              <option>Bus</option>
+            </select>
+            <label class="me-3" id="make">Make</label>
+            <select class="form-control" id="selectmake" (change)="GetAllModels()">
+              <option value="">- Select make -</option>
+              <option *ngFor="let make of makes">{{ make }}</option>
+            </select>
+            <label class="me-3" id="model">Model</label>
+            <select class="form-control" id="selectmodel">
+              <option value="">- Select model -</option>
+              <option *ngFor="let model of models">{{ model }}</option>
+            </select>
+            <label class="me-3" id="year">Year</label>
+            <input class="form-control" id="selectyear">
+          </div>
         </div>
       </div>
+      <input type="button" value="Submit" (click)="GetFinalMarketValue()">
+    </form>
+    <div *ngIf="valueFinalized==true">
+      <h2 style="color:green">Manufacturer-suggested retail price: {{ finalMarketValue }}</h2>
     </div>
-    <input type="button" value="Submit">
-  </form>
+  </div>
 </div>

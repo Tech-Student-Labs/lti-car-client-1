@@ -1,0 +1,10 @@
+.errorMsg {
+    color: red;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 280px;
+  }
