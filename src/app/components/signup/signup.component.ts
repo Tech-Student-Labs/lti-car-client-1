@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       this.message = data;
     });
 
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('login');
     document.getElementById('login')!.style.display = "block";
     document.getElementById('signup')!.style.display = "block";
     document.getElementById('logout')!.style.display = "none";

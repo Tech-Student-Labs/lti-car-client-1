@@ -12,7 +12,7 @@ import { VehicleResponse } from '../models/vehicle-response';
 export class StoreVehiclesService {
 
   // Endpoint to the API URL
-  private endpoint: string = 'http://localhost:5000/vehicle';
+  private endpoint: string = 'http://localhost:5000/vehiclelisting';
   public status: any;
 
   constructor(private http: HttpClient) { }
