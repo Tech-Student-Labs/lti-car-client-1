@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignupService } from 'src/app/services/signup.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit {
   public message: string = '';
   public signupGroup!: FormGroup;
 
-  constructor(private signupService: SignupService, private fb: FormBuilder) { }
+  constructor(private signupService: SignupService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.signupGroup = this.fb.group({
@@ -30,5 +31,10 @@ export class SignupComponent implements OnInit {
     this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(data => {
       this.message = data;
     });
+
+    this.router.navigateByUrl('');
+    document.getElementById('login')!.style.display = "block";
+    document.getElementById('signup')!.style.display = "block";
+    document.getElementById('logout')!.style.display = "none";
   }
 }
