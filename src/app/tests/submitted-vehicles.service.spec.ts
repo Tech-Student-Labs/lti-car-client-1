@@ -32,8 +32,6 @@ describe('SubmittedVehiclesService', () => {
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getByUserId()).toBeDefined();
     service.getByUserId().subscribe( data => {
-      console.log(data);
-      console.log(apiData);
       expect(data).toEqual(apiData);
       expect(data).toBeTruthy();
       expect(data).toBeDefined();
