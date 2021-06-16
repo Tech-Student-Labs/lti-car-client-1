@@ -10,6 +10,7 @@ import { SubmittedVehicleDetailsComponent } from './components/submitted-vehicle
 import { SubmittedVehiclesService } from './services/submitted-vehicles.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { LoginpageComponent } from './components/loginpage/loginpage.component';
     VehicleDetailsComponent,
     HistoryComponent,
     SubmittedVehicleDetailsComponent,
-    LoginpageComponent
+    LoginpageComponent,
+    SignupComponent
   ],
   providers: [
     StoreVehiclesService,
