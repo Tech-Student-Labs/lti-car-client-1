@@ -1,3 +1,9 @@
-export interface token{
+export class token{
     token: string;
+    /**
+     *
+     */
+    constructor(token:string) {
+        this.token = token;
+    }
 }

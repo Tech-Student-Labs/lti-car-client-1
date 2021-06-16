@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-details.component';
 import { HistoryComponent } from './components/history/history.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 
 @NgModule({
@@ -25,7 +25,8 @@ import { LoginpageComponent } from './components/loginpage/loginpage.component';
     LoginpageComponent
   ],
   providers: [
-    StoreVehiclesService
+    StoreVehiclesService,
+    FormBuilder
   ]
 })
 export class VehicleModule { }

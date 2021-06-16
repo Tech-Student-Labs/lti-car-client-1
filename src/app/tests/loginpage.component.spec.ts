@@ -5,6 +5,8 @@ import { DebugElement } from '@angular/core';
 
 import { LoginpageComponent } from '../components/loginpage/loginpage.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormBuilder } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 // import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Loginpage Component', () => {
@@ -15,7 +17,8 @@ describe('Loginpage Component', () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginpageComponent ],
       imports: [HttpClientTestingModule],
-      // providers: [{provide: SignupService, useClass: MockSignupService}]
+      providers: [FormBuilder, LoginService]
+      //providers: [{provide: SignupService, useClass: MockSignupService}]
     })
     .compileComponents();
   });
@@ -31,7 +34,32 @@ describe('Loginpage Component', () => {
   });
 
   it('should stub LoginUser method in component', () => {
-    component.LoginUser('', '');
+    component.LoginUser();
     expect(component.message).toEqual('');
   });
+
+  describe('when service returns an error ', () => {
+    let app;
+    const testError = {
+        status: 406,
+        error: {
+            message: 'Test 406 error'
+        }
+    };
+
+    beforeEach(async(() => {
+      const fixture = TestBed.createComponent(LoginpageComponent);
+      app = fixture.componentInstance;
+      spyOn(LoginService, 'LoginUser').and.returnValue(Observable.throw(testError));
+  }));
+  })
+  it('should set the token when LoginUser is called', () => {
+    // component.loginGroup.value.email = "kevinhuynh@yahoo.com";
+    // component.loginGroup.value.password = "password";
+    // component.LoginUser();
+    // expect(component.message).toEqual("Login Successful");
+
+    //expect(()=> {component.LoginUser();}).toThrowError()
+  });
+
 });

@@ -14,11 +14,13 @@ export class LoginService {
   api: string = "http://localhost:5000/User/Login";
   status: any;
   
-  handleError(error: HttpErrorResponse) {
-    return throwError(error);
-}
+
   LoginUser(email: string, password: string): Observable<token>
   {
-    return this.http.post<token>(this.api, {email: email, password: password}).pipe(catchError(this.handleError));
+    return this.http.post<token>(this.api, {email: email, password: password});
+  }
+  getToken():  string | null 
+  {
+    return  localStorage.getItem('token');
   }
 }
