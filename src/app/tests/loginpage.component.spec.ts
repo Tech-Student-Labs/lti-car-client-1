@@ -19,12 +19,11 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 
 describe('Loginpage Component', () => {
   let component: LoginpageComponent;
-  let fixture: ComponentFixture<LoginpageComponent>;
-    
+  let fixture: ComponentFixture<LoginpageComponent>;    
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginpageComponent, NavbarComponent ],
+      declarations: [ LoginpageComponent ],
       imports: [HttpClientTestingModule, RouterTestingModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
       providers: [
         FormBuilder,
@@ -64,14 +63,4 @@ describe('Loginpage Component', () => {
     expect(component.message).toBe("Login Successful");
     expect(mockCall).toHaveBeenCalled();
   });
-
-  it('should render buttons', () => {
-    var login = fixture.nativeElement.querySelector('#login');
-    var signup = fixture.nativeElement.querySelector('#signup');
-    var logout = fixture.nativeElement.querySelector('#logout');
-    expect(login).toBeDefined();
-    expect(signup).toBeDefined();
-    expect(logout).toBeDefined();
-  })
-
 });

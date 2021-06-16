@@ -31,9 +31,6 @@ export class SignupComponent implements OnInit {
     this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(data => {
       this.message = data;
       this.router.navigateByUrl('login');
-      document.getElementById('login')!.style.display = "block";
-      document.getElementById('signup')!.style.display = "block";
-      document.getElementById('logout')!.style.display = "none";
     });
   }
 }

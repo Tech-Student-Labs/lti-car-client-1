@@ -20,7 +20,7 @@ describe('Signup Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupComponent, NavbarComponent ],
+      declarations: [ SignupComponent ],
       imports: [HttpClientTestingModule, RouterTestingModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
       providers: [
         FormBuilder

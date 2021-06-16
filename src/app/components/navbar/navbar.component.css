@@ -2,15 +2,3 @@
     padding-left:100px;
     padding-right:100px;
 }
-
-.login {
-    display: block;
-}
-
-.signup {
-    display: block;
-}
-
-.logout {
-    display: none;
-}
