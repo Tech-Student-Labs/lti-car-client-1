@@ -22,7 +22,7 @@
       <div class="d-flex">
         <button class="btn btn-success me-1 login" id="login" routerLink="login">Log In</button>
         <button class="btn btn-primary me-1 signup" id="signup" routerLink="signup">Sign Up</button>
-        <button class="btn btn-danger me-4 logout" id="logout">Log Out</button>
+        <button class="btn btn-danger me-4 logout" (click)="logout()" id="logout">Log Out</button>
       </div>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
