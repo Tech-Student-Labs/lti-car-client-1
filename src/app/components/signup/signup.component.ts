@@ -30,11 +30,10 @@ export class SignupComponent implements OnInit {
     this.signupService.SignupUser(this.signupGroup.value.email, this.signupGroup.value.userName, this.signupGroup.value.password, 
     this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(data => {
       this.message = data;
+      this.router.navigateByUrl('login');
+      document.getElementById('login')!.style.display = "block";
+      document.getElementById('signup')!.style.display = "block";
+      document.getElementById('logout')!.style.display = "none";
     });
-
-    this.router.navigateByUrl('login');
-    document.getElementById('login')!.style.display = "block";
-    document.getElementById('signup')!.style.display = "block";
-    document.getElementById('logout')!.style.display = "none";
   }
 }

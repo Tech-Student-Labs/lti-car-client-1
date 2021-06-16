@@ -7,7 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SubmitVehicleComponent } from './components/submit-vehicle/submit-vehicle.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeComponent

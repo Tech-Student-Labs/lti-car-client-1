@@ -27,13 +27,10 @@ export class LoginpageComponent implements OnInit {
       (data:token)=>{
         localStorage.setItem('token',data.token);
         this.message = "Login Successful";
-        if (localStorage.getItem('token') != null)
-        {
-          this.router.navigateByUrl('');
-          document.getElementById('login')!.style.display = "none";
-          document.getElementById('signup')!.style.display = "none";
-          document.getElementById('logout')!.style.display = "block";
-        }
+        this.router.navigateByUrl('');
+        document.getElementById('login')!.style.display = "none";
+        document.getElementById('signup')!.style.display = "none";
+        document.getElementById('logout')!.style.display = "block";
       },
       err =>{
       this.message = err.error.Message;

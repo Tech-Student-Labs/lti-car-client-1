@@ -83,4 +83,10 @@ describe('NavbarComponent', () => {
     tick();
     expect(location.path()).toBe('/submitvehicle');
   }));
+
+  it('should stub logout', () => {
+    localStorage.setItem('token', 'jibberish');
+    component.logout();
+    expect(localStorage.getItem('token')).toBeNull();
+  })
 });

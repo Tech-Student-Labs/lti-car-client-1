@@ -5,10 +5,14 @@ import { DebugElement } from '@angular/core';
 
 import { LoginpageComponent } from '../components/loginpage/loginpage.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { of, throwError } from 'rxjs'; // make sure to import the throwError from rxjs
 import { token } from '../models/TokenDTO';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppRoutingModule } from '../app-routing.module';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 
 
 // import { MockSignupService } from '../models/mock-signup-service';
@@ -20,9 +24,12 @@ describe('Loginpage Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginpageComponent ],
-      imports: [HttpClientTestingModule],
-      providers: [FormBuilder, LoginService]
+      declarations: [ LoginpageComponent, NavbarComponent ],
+      imports: [HttpClientTestingModule, RouterTestingModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+      providers: [
+        FormBuilder,
+        LoginService
+      ]
     })
     .compileComponents();
   });
@@ -57,5 +64,14 @@ describe('Loginpage Component', () => {
     expect(component.message).toBe("Login Successful");
     expect(mockCall).toHaveBeenCalled();
   });
+
+  it('should render buttons', () => {
+    var login = fixture.nativeElement.querySelector('#login');
+    var signup = fixture.nativeElement.querySelector('#signup');
+    var logout = fixture.nativeElement.querySelector('#logout');
+    expect(login).toBeDefined();
+    expect(signup).toBeDefined();
+    expect(logout).toBeDefined();
+  })
 
 });

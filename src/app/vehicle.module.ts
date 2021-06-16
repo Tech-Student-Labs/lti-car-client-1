@@ -11,6 +11,8 @@ import { SubmittedVehiclesService } from './services/submitted-vehicles.service'
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import { SignupComponent } from './components/signup/signup.component';
     StoreVehiclesService,
     SubmittedVehiclesService,
     StoreVehiclesService,
-    FormBuilder
+    FormBuilder,
+    RouterModule
   ]
 })
 export class VehicleModule { }
