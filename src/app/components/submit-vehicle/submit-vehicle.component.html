@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="my-3">Tell us about your vehicle!</h2>
-  <h6 class="errorMsg">{{ errorMsg }}</h6>
+  <h6 class="errorMsg">{{ message }}</h6>
   <div *ngIf="loadingStatus==true">
     <h1>Loading...</h1>
   </div>
@@ -29,13 +29,12 @@
             </select>
             <label class="me-3" id="year">Year</label>
             <input class="form-control" id="selectyear">
+            <label class="me-3" id="vin">Vin</label>
+            <input class="form-control" id="selectvin">
           </div>
         </div>
       </div>
-      <input type="button" value="Submit" (click)="GetFinalMarketValue()">
+      <input type="button" value="Submit" (click)="PostVehicleSubmission()">
     </form>
-    <div *ngIf="valueFinalized==true">
-      <h2 style="color:green">Manufacturer-suggested retail price: {{ finalMarketValue }}</h2>
-    </div>
   </div>
 </div>

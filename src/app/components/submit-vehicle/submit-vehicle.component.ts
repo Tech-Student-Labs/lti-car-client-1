@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GetMarketvaluebymakemodelService } from 'src/app/services/get-marketvaluebymakemodel.service';
+import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
+import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { GetVehiclemakesService } from 'src/app/services/get-vehiclemakes.service';
 import { GetVehiclemodelsService } from 'src/app/services/get-vehiclemodels.service';
+import { SubmittedVehiclesService } from 'src/app/services/submitted-vehicles.service';
 
 @Component({
   selector: 'app-submit-vehicle',
@@ -10,7 +12,7 @@ import { GetVehiclemodelsService } from 'src/app/services/get-vehiclemodels.serv
 })
 export class SubmitVehicleComponent implements OnInit {
 
-  constructor(private makesService: GetVehiclemakesService, private modelsService: GetVehiclemodelsService, private valueService: GetMarketvaluebymakemodelService) { }
+  constructor(private makesService: GetVehiclemakesService, private modelsService: GetVehiclemodelsService, private submittedVehicles: SubmittedVehiclesService) { }
 
   resMake: {Results: {MakeId: number, MakeName: string, VehicleTypeId: number, VehicleTypeName: string}[]} = {Results: []};
   resModel: {Results: {Make_ID: number, Make_Name: string, Model_ID: number, Model_Name: string}[]} = {Results: []};
@@ -21,7 +23,7 @@ export class SubmitVehicleComponent implements OnInit {
   public finalMarketValue: any;
   public valueFinalized: boolean = false;
 
-  public errorMsg: string = '';
+  public message: string = '';
 
   ngOnInit() {
   }
@@ -34,7 +36,7 @@ export class SubmitVehicleComponent implements OnInit {
     var typeString: string = type.value;
     this.makesService.GetMakesByType(typeString).subscribe(
     (data) => {
-      this.errorMsg = '';
+      this.message = '';
       this.resMake = data;
       
       for(let i = 0; i < this.resMake.Results.length; i++)
@@ -46,7 +48,7 @@ export class SubmitVehicleComponent implements OnInit {
     (error) => {
       this.makes = [];
       this.loadingStatus = false;
-      this.errorMsg = error;
+      this.message = error;
     });
   }
 
@@ -58,7 +60,7 @@ export class SubmitVehicleComponent implements OnInit {
     this.loadingStatus2 = true;
     this.modelsService.GetAllModels(make.split(' ')[0]).subscribe(
     (data) => {
-      this.errorMsg = '';
+      this.message = '';
       this.resModel = data;
       
       for(let i = 0; i < this.resModel.Results.length; i++)
@@ -70,22 +72,28 @@ export class SubmitVehicleComponent implements OnInit {
     (error) => {
       this.models = [];
       this.loadingStatus2 = false;
-      this.errorMsg = error;
+      this.message = error;
     });
   }
 
-  GetFinalMarketValue(): void
+  PostVehicleSubmission()
   {
-    var make: string = (document.getElementById('selectmake') as HTMLSelectElement).value;
-    var model: string = (document.getElementById('selectmodel') as HTMLSelectElement).value;
-    var year: string = (document.getElementById('selectyear') as HTMLSelectElement).value;
-    this.valueService.GetMarketValue(year, make, model).subscribe(
+    
+    let vehicleResponse: VehicleResponse = new VehicleResponse(5000, 
+      (document.getElementById('selectmake') as HTMLSelectElement).value,
+      (document.getElementById('selectmodel') as HTMLSelectElement).value,
+      2005,
+      (document.getElementById('selectvin') as HTMLInputElement).value,
+      0
+    );
+    let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
+    this.submittedVehicles.AddVehicleSubmission(submission).subscribe(
       (data) => {
-        this.valueFinalized = true;
-        this.finalMarketValue = data.attributes.manufacturer_suggested_retail_price;
+        // console.log(data);
+        this.message = data;
       },
       (error) => {
-        this.errorMsg = error;
+        this.message = error;
       }
     )
   }

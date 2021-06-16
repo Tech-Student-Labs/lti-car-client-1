@@ -7,6 +7,7 @@ import { AppComponent } from './components/landing-page/landing-page.component';
 import { VehicleModule } from './vehicle.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SubmitVehicleComponent } from './components/submit-vehicle/submit-vehicle.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

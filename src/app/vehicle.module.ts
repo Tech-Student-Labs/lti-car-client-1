@@ -6,21 +6,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-details.component';
 import { HistoryComponent } from './components/history/history.component';
+import { SubmittedVehicleDetailsComponent } from './components/submitted-vehicle-details/submitted-vehicle-details.component';
+import { SubmittedVehiclesService } from './services/submitted-vehicles.service';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginpageComponent } from './components/loginpage/loginpage.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     VehicleListComponent,
     VehicleDetailsComponent,
-    HistoryComponent
+    HistoryComponent,
+    SubmittedVehicleDetailsComponent,
+    LoginpageComponent,
+    SignupComponent
   ],
   providers: [
-    StoreVehiclesService
+    StoreVehiclesService,
+    SubmittedVehiclesService,
+    StoreVehiclesService,
+    FormBuilder
   ]
 })
 export class VehicleModule { }

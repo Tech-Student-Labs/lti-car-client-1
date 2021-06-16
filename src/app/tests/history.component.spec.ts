@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryComponent } from '../components/history/history.component';
+import { MockSubmittedVehicleService } from '../models/mock-submitted-vehicle-service';
+import { SubmittedVehiclesService } from '../services/submitted-vehicles.service';
 
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
@@ -8,7 +11,9 @@ describe('HistoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ]
+      declarations: [ HistoryComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [{provide:SubmittedVehiclesService, useClass: MockSubmittedVehicleService}]
     })
     .compileComponents();
   });
@@ -21,5 +26,17 @@ describe('HistoryComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get vehicle data', () => {
+    expect(component.inventory.length).toEqual(5);
+  });
+
+  it('should render 5 cards', () => {
+    expect(fixture.nativeElement.querySelectorAll('.card').length).toEqual(5);
+  });
+
+  it('should have a loading status element', () => {
+    expect(fixture.nativeElement.querySelector('#loadingStatus')).toBeTruthy();
   });
 });
