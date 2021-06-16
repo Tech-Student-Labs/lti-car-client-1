@@ -11,8 +11,8 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginpageComponent implements OnInit {
   public loginGroup!: FormGroup;
-  constructor(private loginService: LoginService, private fb: FormBuilder, private router: Router) { }
-
+  constructor(private loginService: LoginService,private fb: FormBuilder, private router: Router) { }
+  message:string = "";
 
   ngOnInit() {
     this.loginGroup = this.fb.group({
@@ -23,13 +23,13 @@ export class LoginpageComponent implements OnInit {
 
   LoginUser(): void
   {
-    this.loginService.LoginUser(this.loginGroup?.value.email, this.loginGroup?.value.password).subscribe(
+    this.loginService.LoginUser(this.loginGroup.value.email, this.loginGroup.value.password).subscribe(
       (data:token)=>{
         localStorage.setItem('token',data.token);
-        console.log("Login Successful");
+        this.message = "Login Successful";
       },
       err =>{
-      console.log(err.error.Message);
+      this.message = err.error.Message;
     });
 
     if (localStorage.getItem('token') != null)

@@ -5,23 +5,31 @@ import { DebugElement } from '@angular/core';
 
 import { LoginpageComponent } from '../components/loginpage/loginpage.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormBuilder } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { of, throwError } from 'rxjs'; // make sure to import the throwError from rxjs
+import { token } from '../models/TokenDTO';
+
+
 // import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Loginpage Component', () => {
   let component: LoginpageComponent;
   let fixture: ComponentFixture<LoginpageComponent>;
+    
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginpageComponent ],
       imports: [HttpClientTestingModule],
-      // providers: [{provide: SignupService, useClass: MockSignupService}]
+      providers: [FormBuilder, LoginService]
     })
     .compileComponents();
   });
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(LoginpageComponent);
+    let service = TestBed.inject(LoginService);
     component = fixture.componentInstance;
     fixture.autoDetectChanges();
   });
@@ -31,7 +39,23 @@ describe('Loginpage Component', () => {
   });
 
   it('should stub LoginUser method in component', () => {
-    component.LoginUser('', '');
+    component.LoginUser();
     expect(component.message).toEqual('');
   });
+
+  it('should throw error when LoginUser is called with ', () => {
+    const xService = fixture.debugElement.injector.get(LoginService);
+    const mockCall = spyOn(xService,'LoginUser').and.returnValue(throwError({status: 404, error: {Message: "Login Failed"}}));
+    component.LoginUser();
+    expect(component.message).toBe("Login Failed");
+  });
+
+  it('should set the token when LoginUser is called', () => {
+    const xService = fixture.debugElement.injector.get(LoginService);
+    const mockCall = spyOn(xService,'LoginUser').and.returnValue(of(new token("asdasdasd")));
+    component.LoginUser();
+    expect(component.message).toBe("Login Successful");
+    expect(mockCall).toHaveBeenCalled();
+  });
+
 });

@@ -30,8 +30,8 @@ describe('StoreVehiclesService', () => {
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getAll()).toBeDefined();
     service.getAll().subscribe( data => {
-      console.log(data);
-      console.log(apiData);
+      // console.log(data);
+      // console.log(apiData);
       expect(data).toEqual(apiData);
       expect(data).toBeTruthy();
       expect(data).toBeDefined();
