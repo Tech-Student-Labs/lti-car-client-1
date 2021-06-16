@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { VehicleResponse } from '../models/vehicle-response';
 import { SubmittedVehicles } from '../models/submitted-vehicles';
 import jwt_decode from 'jwt-decode';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,28 +19,24 @@ export class SubmittedVehiclesService {
   // Endpoint to the API URL
   private endpoint: string = 'http://localhost:5000/VehicleSubmissions';
   public status: any;
-  public userId: string = '0c220167-7a73-4b6a-a938-3f61ad04e76a';
 
-  constructor(private http: HttpClient) {
-    //initialize userId given the user token
+  constructor(private http: HttpClient) {  }
+
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+    }
   }
-  getDecodedAccessToken(token: string): any {
-        try{
-            return jwt_decode(token);
-        }
-        catch(Error){
-            return null;
-        }
-      }
+
   getByUserId(): Observable<SubmittedVehicles[]> {
-    /*todo get token from local storage*/ var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5YjNiZGI4Ny1kZTQ3LTQxOGQtODg3ZS0zMzVkYTUzNTBmMWUiLCJyb2xlIjoiQWRtaW5Vc2VyIiwibmJmIjoxNjIzNzEwNDUzLCJleHAiOjE2MzIzNTA0NTMsImlhdCI6MTYyMzcxMDQ1MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIn0.g11nmSnglviiN2H_zW5hOaNOnnMqwOVm_soOUcshlkM';
-    
+    var token = localStorage.getItem('token');
+
     var tokenHeader = new HttpHeaders({ Authorization: 'Bearer ' + token });
     let tokenInfo = this.getDecodedAccessToken(token); // decode token
-    // console.log(tokenInfo);
-    
+
     return this.http
-      .get<SubmittedVehicles[]>(this.endpoint + '/' + tokenInfo.userId, {
+      .get<SubmittedVehicles[]>(this.endpoint + '/' + tokenInfo.UserID, {
         headers: tokenHeader,
       })
       .pipe(
