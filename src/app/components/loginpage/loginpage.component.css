@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 170px;
+  }
+  
+  .column2 {
+      border-left: 2px solid rgb(88, 88, 88);
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .successMsg {
+      color: green;
+  }
+  
+  .errorMsg {
+      color: red;
+  }

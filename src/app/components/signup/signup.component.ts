@@ -8,17 +8,16 @@ import { SignupService } from 'src/app/services/signup.service';
 })
 export class SignupComponent implements OnInit {
 
-  // public user: UserSignup = new UserSignup("", "", "", "", "");
   public message: string = '';
 
-  constructor(private service: SignupService) { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }
 
   SignupUser(email: string, username: string, password: string, firstName: string, lastName: string): void
   {
-    this.service.SignupUser(email, username, password, firstName, lastName).subscribe(data => {
+    this.signupService.SignupUser(email, username, password, firstName, lastName).subscribe(data => {
       this.message = data;
     });
   }

@@ -4,25 +4,36 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { SubmitVehicleComponent } from '../components/submit-vehicle/submit-vehicle.component';
+import { GetVehiclemakesService } from '../services/get-vehiclemakes.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SubmitVehicleComponent', () => {
   let component: SubmitVehicleComponent;
   let fixture: ComponentFixture<SubmitVehicleComponent>;
+  let service: GetVehiclemakesService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SubmitVehicleComponent ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ SubmitVehicleComponent ],
+      imports: [HttpClientTestingModule],
+      // providers: [{provide: StoreVehiclesService, useClass: MockVehicleService}]
     })
     .compileComponents();
-  }));
+  });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(SubmitVehicleComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = TestBed.inject(GetVehiclemakesService);
+    fixture.autoDetectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should stub GetAllMakes method', () => {
+  //   component.GetAllMakes();
+  //   expect()
+  // })
 });

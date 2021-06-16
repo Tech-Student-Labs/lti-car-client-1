@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="my-3">Welcome back!</h2>
+  <!-- <h5 class="successMsg">{{ successMsg }}</h5> -->
+  <form class="my-4" [formGroup]="loginGroup">
+    <div class="row">
+      <div class="column">
+        <div class="form-group me-4">
+          <label class="me-3" id="email">Email</label>
+          <input class="form-control" formControlName="email" type="text">
+        </div>
+        <div class="form-group me-4">
+          <label class="me-3" id="password">Password</label>
+          <input class="form-control" formControlName="password" type="password">
+        </div>
+      </div>
+    </div>
+    <!-- <div id="captcha">
+      <h3>{{ cap }}</h3>
+    </div> -->
+    <!-- <input id="checkCaptcha" placeholder="Enter captcha"><br/> -->
+    <input type="submit" value="Submit" [disabled]="!loginGroup.valid"
+    (click)="LoginUser()">
+    <!-- <h6 class="errorMsg">{{ errorMsg }}</h6> -->
+  </form>
+</div>
