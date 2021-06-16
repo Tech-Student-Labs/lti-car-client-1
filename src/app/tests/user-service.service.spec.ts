@@ -27,13 +27,13 @@ describe('UserServiceService', () => {
     });
   });
 
-  it('should be created', () => {
+  it('should be true when there is a token', () => {
     localStorage.setItem("token","asd");
     service.updateUserStatus();
     expect(service.userLoggedIn).toBeTruthy();
   });
 
-  it('should be created', () => {
+  it('should be return an observable of true when there is a token', () => {
     localStorage.setItem("token","asd");
     service.updateUserStatus();
     service.getUserStatus().subscribe(data => {
