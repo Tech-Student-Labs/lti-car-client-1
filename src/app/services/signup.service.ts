@@ -8,12 +8,12 @@ import { tap } from 'rxjs/operators';
 })
 export class SignupService {
 
-  api: string = "http://localhost:5000/signup";
+  api: string = "http://localhost:5000/User/Signup";
   // status: any;
 
   constructor(private http: HttpClient) { }
 
   SignupUser(email: string, username: string, password: string, firstName: string, lastName: string): Observable<string> {
-    return this.http.post<string>(this.api, {email: email, username: username, password: password, firstName: firstName, lastName: lastName});
+    return this.http.post<string>(this.api, {email: email, userName: username, password: password, firstName: firstName, lastName: lastName});
   }
 }

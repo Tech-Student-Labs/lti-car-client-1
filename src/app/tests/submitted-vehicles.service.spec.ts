@@ -29,7 +29,7 @@ describe('SubmittedVehiclesService', () => {
   });
 
   it('getByUserId should return values', () => {
-    let apiData: SubmittedVehicles[] =  [{timeStamp: new Date(), vehicle: new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 1111)}];
+    let apiData: SubmittedVehicles[] =  [{userId: 'string', timeStamp: new Date(), vehicle: new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 1111)}];
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getByUserId()).toBeDefined();
  
@@ -47,4 +47,26 @@ describe('SubmittedVehiclesService', () => {
     expect(service.status).toEqual("bad data");
   });
 
+  it('AddVehicleSubmission should call post http', async() => {
+    let submission: SubmittedVehicles = new SubmittedVehicles('hello', new Date(), new VehicleResponse(1, '', '', 1994, '', 30000));
+    await httpServiceSpy.post.and.returnValue(of(''));
+    expect(service.AddVehicleSubmission(submission)).toBeDefined();
+    service.AddVehicleSubmission(submission).subscribe(
+      (data: any) => {
+        expect(data).toEqual('');
+      }
+    )
+  });
+
+  it('AddVehicleSubmission should handle errors', async() => {
+    let submission: SubmittedVehicles = new SubmittedVehicles('hello', new Date(), new VehicleResponse(1, '', '', 1994, '', 30000));
+    await httpServiceSpy.post.and.returnValue(throwError({status: 404, error: {Message: "Submission Failed"}}));
+    expect(service.AddVehicleSubmission(submission)).toBeDefined();
+    service.AddVehicleSubmission(submission).subscribe(
+      (data: any) => {},
+      (err: any) => {
+        expect(err).toEqual({status: 404, error: {Message: "Submission Failed"}});
+      }
+    )
+  });
 });

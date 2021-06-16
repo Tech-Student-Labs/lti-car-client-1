@@ -9,7 +9,7 @@ import { VehicleResponse } from 'src/app/models/vehicle-response';
 })
 export class SubmittedVehicleDetailsComponent implements OnInit {
 
- @Input() vehicle: SubmittedVehicles = new SubmittedVehicles(new Date(),new VehicleResponse(0,"","",0,"",0));
+ @Input() vehicle: SubmittedVehicles = new SubmittedVehicles("", new Date(),new VehicleResponse(0,"","",0,"",0));
 
 
   constructor() { }
