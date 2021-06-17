@@ -1,0 +1,17 @@
+app-submitted-vehicle-details {
+    display:inline-block;
+    width: 30%;
+    height: 400px;
+    margin: 5px;
+    transition: 0.5s;
+}
+
+app-submitted-vehicle-details:hover {
+    width: 33%;
+    height: 420px;
+    transition: 0.8s;
+}
+
+.cardcontainer {
+    text-align: center;
+}
