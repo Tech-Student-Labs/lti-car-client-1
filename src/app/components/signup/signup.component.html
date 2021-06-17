@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
-    <input type="button" value="Submit" (click)="SignupUser()">
+    <input type="button" value="Submit" [disabled]="!signupGroup.valid" (click)="SignupUser()">
+    <h6 class="errMsg">{{ message }}</h6>
   </form>
 </div>

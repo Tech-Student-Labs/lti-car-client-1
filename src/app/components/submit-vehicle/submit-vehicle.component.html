@@ -1,6 +1,5 @@
 <div class="container">
   <h2 class="my-3">Tell us about your vehicle!</h2>
-  <h6 class="errorMsg">{{ message }}</h6>
   <div *ngIf="loadingStatus==true">
     <h1>Loading...</h1>
   </div>
@@ -34,7 +33,9 @@
           </div>
         </div>
       </div>
-      <input type="button" value="Submit" (click)="PostVehicleSubmission()">
+      <input type="button" value="Submit" [disabled]="!submitVehiclesGroup.valid" (click)="PostVehicleSubmission()">
+      <h6 class="errMsg">{{ postMessage }}</h6>
+      <h6 class="Msg">{{ postMessage2 }}</h6>
     </form>
   </div>
 </div>

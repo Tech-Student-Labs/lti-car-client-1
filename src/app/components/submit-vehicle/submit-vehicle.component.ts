@@ -25,16 +25,18 @@ export class SubmitVehicleComponent implements OnInit {
   public valueFinalized: boolean = false;
 
   public message: string = '';
+  public postMessage: string = '';
+  public postMessage2: string = '';
 
   public submitVehiclesGroup!: FormGroup;
 
   ngOnInit() {
     this.submitVehiclesGroup = this.fb.group({
-      type: ['', [Validators.required, Validators.minLength(1)]],
-      make: ['', [Validators.required, Validators.minLength(1)]],
-      model: ['', [Validators.required, Validators.minLength(1)]],
-      year: ['', [Validators.required, Validators.minLength(1)]],
-      vin: ['', [Validators.required, Validators.minLength(1)]]
+      type: ['', [Validators.required]],
+      make: ['', [Validators.required]],
+      model: ['', [Validators.required]],
+      year: ['', [Validators.required, Validators.minLength(4)]],
+      vin: ['', [Validators.required, Validators.minLength(17), Validators.maxLength(17)]]
     });
   }
 
@@ -96,12 +98,13 @@ export class SubmitVehicleComponent implements OnInit {
     );
     let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
     this.submittedVehicles.AddVehicleSubmission(submission).subscribe(
-      (data) => {
-        this.message = data;
+      (data: any) => {
+        this.postMessage = data.error.Message;
+        this.postMessage2 = data.error.text;
       },
       (error) => {
-        this.message = error;
+        this.postMessage = error.error.Message;
       }
-    )
+    );
   }
 }

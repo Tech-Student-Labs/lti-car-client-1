@@ -28,9 +28,16 @@ export class SignupComponent implements OnInit {
   SignupUser(): void
   {
     this.signupService.SignupUser(this.signupGroup.value.email, this.signupGroup.value.userName, this.signupGroup.value.password, 
-    this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(data => {
-      this.message = data;
-      this.router.navigateByUrl('login');
-    });
+    this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(
+      (data:any) => {
+        this.router.navigateByUrl('login');
+    },
+    err =>{
+      this.message = err.error.text;
+      if (this.message == "Succeeded"){
+        this.router.navigateByUrl('login');
+      }
+    }
+    );
   }
 }

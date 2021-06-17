@@ -1,4 +1,8 @@
-.errorMsg {
+.Msg {
+    color: green;
+}
+
+.errMsg {
     color: red;
 }
 

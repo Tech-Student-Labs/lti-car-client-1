@@ -15,5 +15,6 @@
     </div>
     <input type="submit" value="Submit" [disabled]="!loginGroup.valid"
     (click)="LoginUser()">
+    <h6 class="errMsg">{{ message }}</h6>
   </form>
 </div>
