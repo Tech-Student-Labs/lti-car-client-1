@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { UserService } from '../services/user.service';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -19,7 +20,8 @@ describe('NavbarComponent', () => {
       ],
       declarations: [ 
         NavbarComponent
-      ]
+      ],
+      providers: [ UserService ]
     })
     .compileComponents();
   }));
@@ -47,7 +49,7 @@ describe('NavbarComponent', () => {
   });
   
   it('should have a logout button', () => {
-    localStorage.setItem("token","asdasdasd");
+    localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5ODcyODQ5YS02ODAyLTRlYmQtODNkNi05YzJmYmJmOWI4NzciLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM5NDU3MzIsImV4cCI6MTYzMjU4NTczMiwiaWF0IjoxNjIzOTQ1NzMyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.At-mrIJOlsfvZMzpbJ0XqwGNIQiv3eg4rTAtUE8jpnw");
     fixture.componentInstance.ngOnInit();
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('#logout')).toBeTruthy();

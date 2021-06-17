@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './components/history/history.component';
 import { HomeComponent } from './components/home/home.component';
+import { InventoryPageComponent } from './components/inventory-page/inventory-page.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SubmitVehicleComponent } from './components/submit-vehicle/submit-vehicle.component';
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'submitvehicle',
     component: SubmitVehicleComponent
+  },
+  {
+    path: 'inventory',
+    component: InventoryPageComponent
   }
 ];
 
