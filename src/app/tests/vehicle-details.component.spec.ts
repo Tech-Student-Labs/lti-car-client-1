@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { VehicleDetailsComponent } from '../components/vehicle-details/vehicle-details.component';
 import { VehicleBasic } from '../models/vehicle-basic';
 import { VehicleResponse } from '../models/vehicle-response';
+import { VehicleListing } from '../models/vehicle-listing';
 
 describe('VehicleDetailsComponent', () => {
   let component: VehicleDetailsComponent;
@@ -21,7 +22,8 @@ describe('VehicleDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VehicleDetailsComponent);
     component = fixture.componentInstance;
-    component.vehicle = new VehicleResponse(0,"","",0,"",0);
+    component.vehicle = new VehicleListing(0,0,new VehicleResponse(0,"","",0,"",0));
+    ;
     fixture.detectChanges();
   });
 
