@@ -7,7 +7,6 @@ describe('UserServiceService', () => {
   let token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5ODcyODQ5YS02ODAyLTRlYmQtODNkNi05YzJmYmJmOWI4NzciLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM5NDU3MzIsImV4cCI6MTYzMjU4NTczMiwiaWF0IjoxNjIzOTQ1NzMyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.At-mrIJOlsfvZMzpbJ0XqwGNIQiv3eg4rTAtUE8jpnw";
 
   beforeEach(() => {
-    localStorage.clear();
     localStorage.setItem('token',token);
     TestBed.configureTestingModule({});
     service = TestBed.inject(UserService);
@@ -48,5 +47,9 @@ describe('UserServiceService', () => {
     localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxN2UxM2E4ZS0xNGJiLTQ1YTAtYmZjNy0wOTNhZTU4OGQ2MTYiLCJyb2xlIjoiQWRtaW5Vc2VyIiwibmJmIjoxNjIzOTQ4MjM5LCJleHAiOjE2MzI1ODgyMzksImlhdCI6MTYyMzk0ODIzOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIn0.5UmS4C91vCVeDZP8Rx-G2CIVMY0_9z4KKS_wqqgG1aw")
     service.updateUserStatus();
     expect(service.userIsAdmin).toBeTruthy();
+  });
+
+  afterEach(() => {
+    localStorage.clear();
   });
 });
