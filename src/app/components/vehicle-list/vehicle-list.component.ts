@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { Vehicle } from 'src/app/models/vehicle';
-import { VehicleBasic } from 'src/app/models/vehicle-basic';
-import { VehicleResponse } from 'src/app/models/vehicle-response';
+import { VehicleListing } from 'src/app/models/vehicle-listing';
 import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 
 @Component({
@@ -13,7 +9,7 @@ import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
 })
 export class VehicleListComponent implements OnInit {
 
-  inventory: VehicleResponse[] = [];
+  inventory: VehicleListing[] = [];
   loadingStatus: string = "Loading...";
   doneLoading: boolean = false;
 
