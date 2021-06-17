@@ -6,7 +6,7 @@ import { DebugElement } from '@angular/core';
 import { SignupComponent } from '../components/signup/signup.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SignupService } from '../services/signup.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -45,9 +45,25 @@ describe('Signup Component', () => {
 
   it('should set the token when LoginUser is called', () => {
     const xService = fixture.debugElement.injector.get(SignupService);
-    var mockCall = spyOn(xService,'SignupUser').and.returnValue(of("Signup Successful"));
+    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Succeeded"}}));
     component.SignupUser();
-    expect(component.message).toBe("Signup Successful");
+    expect(component.message).toBe("Succeeded");
+    expect(mockCall).toHaveBeenCalled();
+  });
+
+  it('should handle errors', () => {
+    const xService = fixture.debugElement.injector.get(SignupService);
+    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Succeeded"}}));
+    component.SignupUser();
+    expect(component.message).toBe("Succeeded");
+    expect(mockCall).toHaveBeenCalled();
+  });
+
+  it('should handle errors', () => {
+    const xService = fixture.debugElement.injector.get(SignupService);
+    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Failed"}}));
+    component.SignupUser();
+    expect(component.message).toBe("Failed");
     expect(mockCall).toHaveBeenCalled();
   });
 });

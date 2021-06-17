@@ -69,18 +69,17 @@ describe('SubmitVehicleComponent', () => {
   it('should stub PostVehicleSubmission', () => {
     let service: SubmittedVehiclesService;
     service = TestBed.inject(SubmittedVehiclesService);
-    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(of('success'));
+    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(of("{obj: {error: {Message: 'Failed'}}}"));
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiODdkODU0NS01OWRjLTRlYWQtYmQ4Ny0zNGIxNDY4YTI5ZmYiLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM4NzEwODEsImV4cCI6MTYzMjUxMTA4MSwiaWF0IjoxNjIzODcxMDgxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.OKTIErT7vo9SKMN4R3irfNLd6wsyjjadYEQeoYQv_IU');
     component.PostVehicleSubmission();
-    expect(component.message).toBe('success');
+    expect(component.postMessage2).toBe('success');
   });
 
   it('PostVehicleSubmission should handle errors', () => {
     let service: SubmittedVehiclesService;
     service = TestBed.inject(SubmittedVehiclesService);
-    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(throwError('fail'));
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiODdkODU0NS01OWRjLTRlYWQtYmQ4Ny0zNGIxNDY4YTI5ZmYiLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM4NzEwODEsImV4cCI6MTYzMjUxMTA4MSwiaWF0IjoxNjIzODcxMDgxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.OKTIErT7vo9SKMN4R3irfNLd6wsyjjadYEQeoYQv_IU');
     component.PostVehicleSubmission();
-    expect(component.message).toBe('fail');
+    expect(component.postMessage).toBe('fail');
   })
 });
