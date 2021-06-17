@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageDTO } from 'src/app/models/MessageDTO';
 import { SignupService } from 'src/app/services/signup.service';
 
 @Component({
@@ -29,14 +30,14 @@ export class SignupComponent implements OnInit {
   {
     this.signupService.SignupUser(this.signupGroup.value.email, this.signupGroup.value.userName, this.signupGroup.value.password, 
     this.signupGroup.value.firstName, this.signupGroup.value.lastName).subscribe(
-      (data:any) => {
+      (data: MessageDTO) => {
+        console.log(data);
+        this.message = data.message;
         this.router.navigateByUrl('login');
     },
     err =>{
-      this.message = err.error.text;
-      if (this.message == "Succeeded"){
-        this.router.navigateByUrl('login');
-      }
+      console.log(err);
+      this.message = err.error.Message;
     }
     );
   }

@@ -10,6 +10,7 @@ import { VehicleResponse } from '../models/vehicle-response';
 import { SubmittedVehicles } from '../models/submitted-vehicles';
 import jwt_decode from 'jwt-decode';
 import { LoginService } from './login.service';
+import { MessageDTO } from '../models/MessageDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -51,7 +52,7 @@ export class SubmittedVehiclesService {
       );
   }
 
-  AddVehicleSubmission(submission: SubmittedVehicles): Observable<string>
+  AddVehicleSubmission(submission: SubmittedVehicles): Observable<MessageDTO>
   {
     var token = localStorage.getItem('token');
 
@@ -59,20 +60,9 @@ export class SubmittedVehiclesService {
     let tokenInfo = this.getDecodedAccessToken(token); // decode token
     submission.userId = tokenInfo.UserID;
     return this.http
-      .post<string>(this.endpoint, 
+      .post<MessageDTO>(this.endpoint, 
         submission, {
         headers: tokenHeader,
-      })
-      .pipe(
-        tap(
-          (success: any) => {
-            this.status = success;
-          },
-          (err: any) => {
-            this.status = err;
-          }
-        ),
-        catchError((data) => of(data))
-      );
+      });
   }
 }

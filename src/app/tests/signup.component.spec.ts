@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule, routes } from '../app-routing.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
+import { MessageDTO } from '../models/MessageDTO';
 
 describe('Signup Component', () => {
   let component: SignupComponent;
@@ -45,7 +46,7 @@ describe('Signup Component', () => {
 
   it('should set the token when LoginUser is called', () => {
     const xService = fixture.debugElement.injector.get(SignupService);
-    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Succeeded"}}));
+    var mockCall = spyOn(xService,'SignupUser').and.returnValue(of(new MessageDTO("Succeeded")));
     component.SignupUser();
     expect(component.message).toBe("Succeeded");
     expect(mockCall).toHaveBeenCalled();
@@ -53,15 +54,7 @@ describe('Signup Component', () => {
 
   it('should handle errors', () => {
     const xService = fixture.debugElement.injector.get(SignupService);
-    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Succeeded"}}));
-    component.SignupUser();
-    expect(component.message).toBe("Succeeded");
-    expect(mockCall).toHaveBeenCalled();
-  });
-
-  it('should handle errors', () => {
-    const xService = fixture.debugElement.injector.get(SignupService);
-    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {text: "Failed"}}));
+    var mockCall = spyOn(xService,'SignupUser').and.returnValue(throwError({error: {Message: "Failed"}}));
     component.SignupUser();
     expect(component.message).toBe("Failed");
     expect(mockCall).toHaveBeenCalled();

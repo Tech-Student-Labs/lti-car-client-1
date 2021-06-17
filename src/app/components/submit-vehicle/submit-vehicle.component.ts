@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageDTO } from 'src/app/models/MessageDTO';
 import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { GetVehiclemakesService } from 'src/app/services/get-vehiclemakes.service';
@@ -35,7 +36,7 @@ export class SubmitVehicleComponent implements OnInit {
       type: ['', [Validators.required]],
       make: ['', [Validators.required]],
       model: ['', [Validators.required]],
-      year: ['', [Validators.required, Validators.minLength(4)]],
+      year: ['', [Validators.required, Validators.min(1887), Validators.max((new Date()).getFullYear()+1)]],
       vin: ['', [Validators.required, Validators.minLength(17), Validators.maxLength(17)]]
     });
   }
@@ -98,12 +99,13 @@ export class SubmitVehicleComponent implements OnInit {
     );
     let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
     this.submittedVehicles.AddVehicleSubmission(submission).subscribe(
-      (data: any) => {
-        this.postMessage = data.error.Message;
-        this.postMessage2 = data.error.text;
+      (data: MessageDTO) => {
+        this.postMessage = data.message;
+        this.postMessage2 = "";
       },
       (error) => {
-        this.postMessage = error.error.Message;
+        this.postMessage2 = error.error.Message;
+        this.postMessage = "";
       }
     );
   }

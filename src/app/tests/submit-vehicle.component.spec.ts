@@ -12,6 +12,7 @@ import { MockModelsService } from '../models/mock-models-service';
 import { of, throwError } from 'rxjs';
 import { SubmittedVehiclesService } from '../services/submitted-vehicles.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MessageDTO } from '../models/MessageDTO';
 
 describe('SubmitVehicleComponent', () => {
   let component: SubmitVehicleComponent;
@@ -69,17 +70,18 @@ describe('SubmitVehicleComponent', () => {
   it('should stub PostVehicleSubmission', () => {
     let service: SubmittedVehiclesService;
     service = TestBed.inject(SubmittedVehiclesService);
-    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(of("{obj: {error: {Message: 'Failed'}}}"));
+    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(of(new MessageDTO("success")));
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiODdkODU0NS01OWRjLTRlYWQtYmQ4Ny0zNGIxNDY4YTI5ZmYiLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM4NzEwODEsImV4cCI6MTYzMjUxMTA4MSwiaWF0IjoxNjIzODcxMDgxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.OKTIErT7vo9SKMN4R3irfNLd6wsyjjadYEQeoYQv_IU');
     component.PostVehicleSubmission();
-    expect(component.postMessage2).toBe('success');
+    expect(component.postMessage).toBe('success');
   });
 
   it('PostVehicleSubmission should handle errors', () => {
     let service: SubmittedVehiclesService;
     service = TestBed.inject(SubmittedVehiclesService);
+    const mockCall = spyOn(service, 'AddVehicleSubmission').and.returnValue(throwError({error: {Message: "fail"}}));
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiODdkODU0NS01OWRjLTRlYWQtYmQ4Ny0zNGIxNDY4YTI5ZmYiLCJyb2xlIjoiUmVndWxhclVzZXIiLCJuYmYiOjE2MjM4NzEwODEsImV4cCI6MTYzMjUxMTA4MSwiaWF0IjoxNjIzODcxMDgxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.OKTIErT7vo9SKMN4R3irfNLd6wsyjjadYEQeoYQv_IU');
     component.PostVehicleSubmission();
-    expect(component.postMessage).toBe('fail');
+    expect(component.postMessage2).toBe('fail');
   })
 });
