@@ -1,0 +1,69 @@
+.imageContainer {
+    background-image:url("../../../assets/cardealership2mod.png");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
+    width:100%;
+    height:700px;
+}
+
+.imageContainer h2, .imageContainer p {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.imageContainer h2 {
+    bottom: 10%;
+}
+
+.imageContainer p {
+    bottom: 30%;
+}
+
+.card-group {
+    padding-bottom:50px;
+}
+
+.card-title {
+    margin:auto;
+    margin-bottom:30px;
+}
+
+.card-body h1, .card-body h4 {
+    color:blue;
+    text-align:center;
+}
+
+.card-body h1 {
+    margin-bottom:2px;
+    margin-top:2px;
+    font-size:70px;
+    font-weight:70px;
+}
+
+.card-body h4 {
+    margin:0;
+    font-size:23px;
+}
+
+.card-body h5 {
+    text-align:center;
+    padding-bottom:20px;
+    border-bottom:1px solid black;
+}
+
+.card {
+    border:none;
+}
+
+.card-text-group {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.addbottom {
+    margin-bottom:50px;
+}

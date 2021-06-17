@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { GetVehiclemakesService } from 'src/app/services/get-vehiclemakes.service';
@@ -12,7 +13,7 @@ import { SubmittedVehiclesService } from 'src/app/services/submitted-vehicles.se
 })
 export class SubmitVehicleComponent implements OnInit {
 
-  constructor(private makesService: GetVehiclemakesService, private modelsService: GetVehiclemodelsService, private submittedVehicles: SubmittedVehiclesService) { }
+  constructor(private makesService: GetVehiclemakesService, private modelsService: GetVehiclemodelsService, private submittedVehicles: SubmittedVehiclesService, private fb: FormBuilder) { }
 
   resMake: {Results: {MakeId: number, MakeName: string, VehicleTypeId: number, VehicleTypeName: string}[]} = {Results: []};
   resModel: {Results: {Make_ID: number, Make_Name: string, Model_ID: number, Model_Name: string}[]} = {Results: []};
@@ -25,16 +26,24 @@ export class SubmitVehicleComponent implements OnInit {
 
   public message: string = '';
 
+  public submitVehiclesGroup!: FormGroup;
+
   ngOnInit() {
+    this.submitVehiclesGroup = this.fb.group({
+      type: ['', [Validators.required, Validators.minLength(1)]],
+      make: ['', [Validators.required, Validators.minLength(1)]],
+      model: ['', [Validators.required, Validators.minLength(1)]],
+      year: ['', [Validators.required, Validators.minLength(1)]],
+      vin: ['', [Validators.required, Validators.minLength(1)]]
+    });
   }
 
   GetMakesByType(): void
   {
     this.makes = [];
     this.loadingStatus = false;
-    var type: HTMLSelectElement = document.getElementById('selecttype') as HTMLSelectElement;
-    var typeString: string = type.value;
-    this.makesService.GetMakesByType(typeString).subscribe(
+    var type = this.submitVehiclesGroup.value.type;
+    this.makesService.GetMakesByType(type).subscribe(
     (data) => {
       this.message = '';
       this.resMake = data;
@@ -55,8 +64,7 @@ export class SubmitVehicleComponent implements OnInit {
   GetAllModels(): void
   {
     this.models = [];
-    var makeElement: HTMLSelectElement = document.getElementById('selectmake') as HTMLSelectElement;
-    var make = makeElement.value;
+    var make = this.submitVehiclesGroup.value.make;
     this.loadingStatus2 = true;
     this.modelsService.GetAllModels(make.split(' ')[0]).subscribe(
     (data) => {
@@ -80,10 +88,10 @@ export class SubmitVehicleComponent implements OnInit {
   {
     
     let vehicleResponse: VehicleResponse = new VehicleResponse(5000, 
-      (document.getElementById('selectmake') as HTMLSelectElement).value,
-      (document.getElementById('selectmodel') as HTMLSelectElement).value,
-      parseInt((document.getElementById('selectyear') as HTMLInputElement).value),
-      (document.getElementById('selectvin') as HTMLInputElement).value,
+      this.submitVehiclesGroup.value.make,
+      this.submitVehiclesGroup.value.model,
+      this.submitVehiclesGroup.value.year,
+      this.submitVehiclesGroup.value.vin,
       0
     );
     let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
