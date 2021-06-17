@@ -7,15 +7,13 @@ import { LoginpageComponent } from '../components/loginpage/loginpage.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../services/login.service';
-import { of, throwError } from 'rxjs'; // make sure to import the throwError from rxjs
+import { of, throwError } from 'rxjs';
 import { token } from '../models/TokenDTO';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule } from '../app-routing.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
-
-// import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Loginpage Component', () => {
   let component: LoginpageComponent;

@@ -89,7 +89,6 @@ export class SubmitVehicleComponent implements OnInit {
     let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
     this.submittedVehicles.AddVehicleSubmission(submission).subscribe(
       (data) => {
-        // console.log(data);
         this.message = data;
       },
       (error) => {

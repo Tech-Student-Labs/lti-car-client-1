@@ -9,7 +9,6 @@ import { tap } from 'rxjs/operators';
 export class SignupService {
 
   api: string = "http://localhost:5000/User/Signup";
-  // status: any;
 
   constructor(private http: HttpClient) { }
 

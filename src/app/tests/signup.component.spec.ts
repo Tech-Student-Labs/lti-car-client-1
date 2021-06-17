@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule, routes } from '../app-routing.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-// import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Signup Component', () => {
   let component: SignupComponent;

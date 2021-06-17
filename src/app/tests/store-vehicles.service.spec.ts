@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StoreVehiclesService } from '../services/store-vehicles.service';
 import { Observable, of, throwError } from 'rxjs';
-//import ApiResponse from '../shared/ApiResponse';
 import { tap } from 'rxjs/operators';
 import { VehicleResponse } from '../models/vehicle-response';
 import { Vehicle } from '../models/vehicle';
@@ -30,8 +29,6 @@ describe('StoreVehiclesService', () => {
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getAll()).toBeDefined();
     service.getAll().subscribe( data => {
-      // console.log(data);
-      // console.log(apiData);
       expect(data).toEqual(apiData);
       expect(data).toBeTruthy();
       expect(data).toBeDefined();
