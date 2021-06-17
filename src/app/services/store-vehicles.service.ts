@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { VehicleBasic } from '../models/vehicle-basic';
 import { VehicleResponse } from '../models/vehicle-response';
+import { VehicleListing } from '../models/vehicle-listing';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class StoreVehiclesService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() : Observable<VehicleResponse[]> {
-      return this.http.get<VehicleResponse[]>(this.endpoint)
+  getAll() : Observable<VehicleListing[]> {
+      return this.http.get<VehicleListing[]>(this.endpoint)
       .pipe(
         tap(
           success => {this.status = success},
@@ -27,10 +28,10 @@ export class StoreVehiclesService {
       );
   }
 
-  addVehicle(vehicle: VehicleResponse) : Observable<VehicleResponse> {
+  addVehicle(vehicle: VehicleListing) : Observable<VehicleListing> {
     const headers = { 'content-type': 'application/json'};
     const body = JSON.stringify(vehicle);
-    return this.http.post<VehicleResponse>(this.endpoint, body, {'headers': headers})
+    return this.http.post<VehicleListing>(this.endpoint, body, {'headers': headers})
       .pipe(
         tap(
           success => {this.status = success},
@@ -40,8 +41,8 @@ export class StoreVehiclesService {
       );
   }
 
-  updateVehicle(vehicle: VehicleResponse) : Observable<VehicleResponse> {
-    return this.http.put<VehicleResponse>(this.endpoint, vehicle)
+  updateVehicle(vehicle: VehicleListing) : Observable<VehicleListing> {
+    return this.http.put<VehicleListing>(this.endpoint, vehicle)
       .pipe(
         tap(
           success => {this.status = success},
@@ -51,8 +52,8 @@ export class StoreVehiclesService {
       );
   }
 
-  deleteVehicle(id: number) : Observable<VehicleResponse> {
-    return this.http.delete<VehicleResponse>(`${this.endpoint}/${id}`)
+  deleteVehicle(id: number) : Observable<VehicleListing> {
+    return this.http.delete<VehicleListing>(`${this.endpoint}/${id}`)
       .pipe(
         tap(
           success => {this.status = success},

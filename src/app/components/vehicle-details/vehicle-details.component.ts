@@ -2,6 +2,7 @@ import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleBasic } from 'src/app/models/vehicle-basic';
+import { VehicleListing } from 'src/app/models/vehicle-listing';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
 
 @Component({
@@ -11,7 +12,7 @@ import { VehicleResponse } from 'src/app/models/vehicle-response';
 })
 export class VehicleDetailsComponent implements OnInit {
 
-  @Input() vehicle: VehicleResponse = new VehicleResponse(0,"","",0,"",0);
+  @Input() vehicle: VehicleListing = new VehicleListing(0,0,new VehicleResponse(0,"","",0,"",0));
 
   constructor() { }
 
