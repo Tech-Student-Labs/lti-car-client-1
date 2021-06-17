@@ -5,7 +5,6 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { VehicleBasic } from 'src/app/models/vehicle-basic';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { StoreVehiclesService } from 'src/app/services/store-vehicles.service';
-//import ApiResponse from 'src/app/shared/ApiResponse';
 
 @Component({
   selector: 'app-vehicle-list',
