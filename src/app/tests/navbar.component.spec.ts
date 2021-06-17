@@ -25,11 +25,13 @@ describe('NavbarComponent', () => {
   }));
 
   beforeEach(() => {
+    localStorage.clear();
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.autoDetectChanges();
+    
   });
 
   it('should create', () => {
@@ -45,6 +47,9 @@ describe('NavbarComponent', () => {
   });
   
   it('should have a logout button', () => {
+    localStorage.setItem("token","asdasdasd");
+    fixture.componentInstance.ngOnInit();
+    fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('#logout')).toBeTruthy();
   });
 
@@ -83,4 +88,10 @@ describe('NavbarComponent', () => {
     tick();
     expect(location.path()).toBe('/submitvehicle');
   }));
+
+  it('should stub logout', () => {
+    localStorage.setItem('token', 'jibberish');
+    component.logout();
+    expect(localStorage.getItem('token')).toBeNull();
+  })
 });

@@ -82,7 +82,7 @@ export class SubmitVehicleComponent implements OnInit {
     let vehicleResponse: VehicleResponse = new VehicleResponse(5000, 
       (document.getElementById('selectmake') as HTMLSelectElement).value,
       (document.getElementById('selectmodel') as HTMLSelectElement).value,
-      2005,
+      parseInt((document.getElementById('selectyear') as HTMLInputElement).value),
       (document.getElementById('selectvin') as HTMLInputElement).value,
       0
     );

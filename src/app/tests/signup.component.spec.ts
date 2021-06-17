@@ -7,7 +7,11 @@ import { SignupComponent } from '../components/signup/signup.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SignupService } from '../services/signup.service';
 import { of } from 'rxjs';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppRoutingModule, routes } from '../app-routing.module';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 // import { MockSignupService } from '../models/mock-signup-service';
 
 describe('Signup Component', () => {
@@ -17,12 +21,10 @@ describe('Signup Component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SignupComponent ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
       providers: [
-        FormBuilder,
-        ReactiveFormsModule
+        FormBuilder
       ]
-      // providers: [{provide: SignupService, useClass: MockSignupService}]
     })
     .compileComponents();
   });
