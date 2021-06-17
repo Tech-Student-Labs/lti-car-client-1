@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
+//import ApiResponse from '../shared/ApiResponse';
 import { Observable, of } from 'rxjs';
 import { VehicleBasic } from '../models/vehicle-basic';
 import { VehicleResponse } from '../models/vehicle-response';
@@ -8,16 +9,18 @@ import { VehicleResponse } from '../models/vehicle-response';
 @Injectable({
   providedIn: 'root'
 })
-export class StoreVehiclesService {
+export class InventoryService {
 
   // Endpoint to the API URL
-  private endpoint: string = 'http://localhost:5000/vehiclelisting';
+  private endpoint: string = 'http://localhost:5000/vehicle';
   public status: any;
 
   constructor(private http: HttpClient) { }
 
   getAll() : Observable<VehicleResponse[]> {
-      return this.http.get<VehicleResponse[]>(this.endpoint)
+    var token = localStorage.getItem('token');
+    var tokenHeader = new HttpHeaders({ Authorization: 'Bearer ' + token });
+      return this.http.get<VehicleResponse[]>(this.endpoint, {headers: tokenHeader})
       .pipe(
         tap(
           success => {this.status = success},

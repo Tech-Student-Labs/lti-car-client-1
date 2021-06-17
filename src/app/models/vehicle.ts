@@ -1,8 +1,3 @@
-// To parse this data:
-//
-//   import { Convert, Vehicle } from "./file";
-//
-//   const vehicle = Convert.toVehicle(json);
 
 export interface Vehicle {
     input:      Input;

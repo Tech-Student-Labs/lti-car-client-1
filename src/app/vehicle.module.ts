@@ -13,6 +13,8 @@ import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { InventoryPageComponent } from './components/inventory-page/inventory-page.component';
+import { InventoryVehicleDetailsComponent } from './components/inventory-vehicle-details/inventory-vehicle-details.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { RouterTestingModule } from '@angular/router/testing';
     HistoryComponent,
     SubmittedVehicleDetailsComponent,
     LoginpageComponent,
-    SignupComponent
+    SignupComponent,
+    InventoryPageComponent,
+    InventoryVehicleDetailsComponent
   ],
   providers: [
     StoreVehiclesService,

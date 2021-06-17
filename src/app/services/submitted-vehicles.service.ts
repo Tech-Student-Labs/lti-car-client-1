@@ -5,7 +5,6 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-//import ApiResponse from '../shared/ApiResponse';
 import { Observable, of } from 'rxjs';
 import { VehicleResponse } from '../models/vehicle-response';
 import { SubmittedVehicles } from '../models/submitted-vehicles';
@@ -77,5 +76,3 @@ export class SubmittedVehiclesService {
       );
   }
 }
-
-// 'deleteUserRole(){   var userNamess = this.formDeleteRole.value.userName;   var oldRoless = this.formDeleteRole.value.oldRole;   var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')})   console.log(this.BaseURI+'/Profile/deleteRole',{params: {userName: userNamess,oldRole:oldRoless},headers:tokenHeader}); // http://localhost:53289/api/Profile/deleteRole?userName=hahaha&oldRole=EnGG_Admin return this.http.get(this.BaseURI+'/Profile/deleteRole',{params: {userName: userNamess,oldRole:oldRoless},headers:tokenHeader}); }

@@ -1,13 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { StoreVehiclesService } from '../services/store-vehicles.service';
-import { Observable, of, throwError } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
+import { of, throwError } from 'rxjs';
 import { VehicleResponse } from '../models/vehicle-response';
-import { Vehicle } from '../models/vehicle';
 
-describe('StoreVehiclesService', () => {
-  let service: StoreVehiclesService;
+import { InventoryService } from '../services/inventory.service';
+
+describe('InventoryService', () => {
+  let service: InventoryService;
   let httpServiceSpy: {get: jasmine.Spy, post: jasmine.Spy, put: jasmine.Spy, delete: jasmine.Spy};
 
   beforeEach(async() => {
@@ -17,7 +17,7 @@ describe('StoreVehiclesService', () => {
       ],
     });
     httpServiceSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
-    service = new StoreVehiclesService(httpServiceSpy as any)
+    service = new InventoryService(httpServiceSpy as any)
   });
 
   it('should be created', () => {

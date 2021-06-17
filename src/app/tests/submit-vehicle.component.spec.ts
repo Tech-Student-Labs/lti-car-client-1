@@ -9,7 +9,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { MockMakesService } from '../models/mock-makes-service';
 import { GetVehiclemodelsService } from '../services/get-vehiclemodels.service';
 import { MockModelsService } from '../models/mock-models-service';
-import { of, throwError } from 'rxjs'; // make sure to import the throwError from rxjs
+import { of, throwError } from 'rxjs';
 import { SubmittedVehiclesService } from '../services/submitted-vehicles.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
