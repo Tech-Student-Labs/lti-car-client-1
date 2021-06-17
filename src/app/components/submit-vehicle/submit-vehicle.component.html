@@ -5,12 +5,12 @@
     <h1>Loading...</h1>
   </div>
   <div *ngIf="loadingStatus==false">
-    <form class="my-4">
+    <form class="my-4" [formGroup]="submitVehiclesGroup">
       <div class="row">
         <div class="column">
           <div class="form-group me-4">
             <label class="me-3" id="vehicletype">Vehicle type</label>
-            <select class="form-control" id="selecttype" (change)="GetMakesByType()">
+            <select class="form-control" id="selecttype" (change)="GetMakesByType()" formControlName="type">
               <option value="">- select vehicle type -</option>
               <option>Motorcycle</option>
               <option>Car</option>
@@ -18,19 +18,19 @@
               <option>Bus</option>
             </select>
             <label class="me-3" id="make">Make</label>
-            <select class="form-control" id="selectmake" (change)="GetAllModels()">
+            <select class="form-control" id="selectmake" (change)="GetAllModels()" formControlName="make">
               <option value="">- Select make -</option>
               <option *ngFor="let make of makes">{{ make }}</option>
             </select>
             <label class="me-3" id="model">Model</label>
-            <select class="form-control" id="selectmodel">
+            <select class="form-control" id="selectmodel" formControlName="model">
               <option value="">- Select model -</option>
               <option *ngFor="let model of models">{{ model }}</option>
             </select>
             <label class="me-3" id="year">Year</label>
-            <input class="form-control" id="selectyear">
+            <input class="form-control" id="selectyear" type="number" formControlName="year">
             <label class="me-3" id="vin">Vin</label>
-            <input class="form-control" id="selectvin">
+            <input class="form-control" id="selectvin" type="text" formControlName="vin">
           </div>
         </div>
       </div>

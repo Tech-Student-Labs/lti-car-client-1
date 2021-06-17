@@ -31,9 +31,11 @@ export class LoginpageComponent implements OnInit {
         this.message = "Login Successful";
         this.router.navigateByUrl('');
         this.userService.updateUserStatus();
+        console.log(this.message);
       },
       err =>{
       this.message = err.error.Message;
+      console.log(this.message);
     });
   }
 
