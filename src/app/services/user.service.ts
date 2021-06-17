@@ -19,7 +19,7 @@ export class UserService {
     this.myUserState$.next(this.userIsAdmin);
   }
 
-  updateUserStatus() {
+  updateUserStatus() : void {
     var token = localStorage.getItem('token');
     if (token != null){
       this.userLoggedIn = true;
