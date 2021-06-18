@@ -6,14 +6,21 @@
         <div class="form-group me-4">
           <label class="me-3" id="email">Email</label>
           <input class="form-control" formControlName="email" type="text">
+          <div class="form-group me-4" *ngIf='loginGroup.controls.email.dirty && loginGroup.controls.email.touched && loginGroup.controls.email.errors' class="alert alert-danger">
+            Must provide a valid email.
+        </div>
         </div>
         <div class="form-group me-4">
           <label class="me-3" id="password">Password</label>
           <input class="form-control" formControlName="password" type="password">
+          <div class="form-group me-4" *ngIf='loginGroup.controls.password.dirty && loginGroup.controls.password.touched && loginGroup.controls.password.errors' class="alert alert-danger">
+            Must provide a password.
+        </div>
         </div>
       </div>
     </div>
     <input type="submit" value="Submit" [disabled]="!loginGroup.valid"
     (click)="LoginUser()">
+    <h6 class="errMsg">{{ message }}</h6>
   </form>
 </div>

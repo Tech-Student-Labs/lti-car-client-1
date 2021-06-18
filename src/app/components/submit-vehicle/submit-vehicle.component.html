@@ -1,6 +1,5 @@
 <div class="container">
   <h2 class="my-3">Tell us about your vehicle!</h2>
-  <h6 class="errorMsg">{{ message }}</h6>
   <div *ngIf="loadingStatus==true">
     <h1>Loading...</h1>
   </div>
@@ -17,24 +16,41 @@
               <option>Truck</option>
               <option>Bus</option>
             </select>
+            <div *ngIf='submitVehiclesGroup.controls.type.touched && submitVehiclesGroup.controls.type.errors' class="alert alert-danger">
+              Must select a Vehicle Type.
+          </div>
             <label class="me-3" id="make">Make</label>
             <select class="form-control" id="selectmake" (change)="GetAllModels()" formControlName="make">
               <option value="">- Select make -</option>
               <option *ngFor="let make of makes">{{ make }}</option>
             </select>
+            <div *ngIf='submitVehiclesGroup.controls.make.touched && submitVehiclesGroup.controls.make.errors' class="alert alert-danger">
+              Must select a Make.
+          </div>
             <label class="me-3" id="model">Model</label>
             <select class="form-control" id="selectmodel" formControlName="model">
               <option value="">- Select model -</option>
               <option *ngFor="let model of models">{{ model }}</option>
             </select>
+            <div *ngIf='submitVehiclesGroup.controls.model.touched && submitVehiclesGroup.controls.model.errors' class="alert alert-danger">
+              Must select a Model.
+          </div>
             <label class="me-3" id="year">Year</label>
             <input class="form-control" id="selectyear" type="number" formControlName="year">
+            <div *ngIf='submitVehiclesGroup.controls.year.dirty && submitVehiclesGroup.controls.year.touched && submitVehiclesGroup.controls.year.errors' class="alert alert-danger">
+              Must enter a valid Year.
+          </div>
             <label class="me-3" id="vin">Vin</label>
             <input class="form-control" id="selectvin" type="text" formControlName="vin">
+            <div *ngIf='submitVehiclesGroup.controls.vin.dirty && submitVehiclesGroup.controls.vin.touched && submitVehiclesGroup.controls.vin.errors' class="alert alert-danger">
+              Must enter a VIN with 17 characters.
+          </div>
           </div>
         </div>
       </div>
-      <input type="button" value="Submit" (click)="PostVehicleSubmission()">
+      <input type="button" value="Submit" [disabled]="!submitVehiclesGroup.valid" (click)="PostVehicleSubmission()">
+      <h6 class="errMsg">{{ postMessage2 }}</h6>
+      <h6 class="Msg">{{ postMessage }}</h6>
     </form>
   </div>
 </div>
