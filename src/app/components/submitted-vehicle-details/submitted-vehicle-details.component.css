@@ -1,0 +1,24 @@
+.card {
+    height: 400px;
+    background-image: url("../../../assets/carhistorybkgd.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.card:hover {
+    height:420px;
+    transition: 0.8s;
+}
+
+h1, h2, h3, h4, h5, p {
+    text-align: right;
+    color: rgb(153, 153, 153);
+}
+
+img {
+    margin:auto;
+    padding-bottom: 20px;
+}

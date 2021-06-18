@@ -23,9 +23,7 @@ export class SubmitVehicleComponent implements OnInit {
   public loadingStatus2: boolean = false;
   public finalMarketValue: any;
   public valueFinalized: boolean = false;
-
   public message: string = '';
-
   public submitVehiclesGroup!: FormGroup;
 
   ngOnInit() {
@@ -47,7 +45,6 @@ export class SubmitVehicleComponent implements OnInit {
     (data) => {
       this.message = '';
       this.resMake = data;
-      
       for(let i = 0; i < this.resMake.Results.length; i++)
       {
         this.makes.push(this.resMake.Results[i].MakeName);
@@ -86,7 +83,6 @@ export class SubmitVehicleComponent implements OnInit {
 
   PostVehicleSubmission()
   {
-    
     let vehicleResponse: VehicleResponse = new VehicleResponse(5000, 
       this.submitVehiclesGroup.value.make,
       this.submitVehiclesGroup.value.model,
