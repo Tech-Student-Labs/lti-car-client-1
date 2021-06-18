@@ -17,7 +17,6 @@ export class HistoryComponent implements OnInit {
   constructor(private submittedVehicleService: SubmittedVehiclesService) { }
 
   ngOnInit(): void {
-    //add user id parameter
     this.submittedVehicleService.getByUserId().subscribe(data => {
       this.inventory = data;
       this.loadingStatus = "";

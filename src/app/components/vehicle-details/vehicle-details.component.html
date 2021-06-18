@@ -1,8 +1,13 @@
 <div>
-    <h3 id="vehicle-make">Make: {{vehicle.vehicle.make}}</h3>
-    <h3 id="vehicle-model">{{vehicle.vehicle.model}}</h3>
-    <p id="vehicle-year">Vehicle Year: {{vehicle.vehicle.year}}</p>
-    <p id="vehicle-vinNumber">Vin: {{vehicle.vehicle.vinNumber}}</p>
-    <p id="vehicle-price">Price: {{vehicle.price}}</p>
-    <button>Buy Now</button>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ vehicle.vehicle.year }} {{ vehicle.vehicle.make }} {{ vehicle.vehicle.model }}</h5>
+            <div class="card-text-group">
+                <h3 class="card-text">{{ vehicle.vehicle.vinNumber }}</h3>
+            </div>
+        </div>
+        <img src="../../../assets/default_car.png" width=300>
+        <h2>{{vehicle.price.toLocaleString('us-US', { style: 'currency', currency: 'USD' })}}</h2>
+        <p>Purchase Today</p><br>
+    </div>
 </div>
