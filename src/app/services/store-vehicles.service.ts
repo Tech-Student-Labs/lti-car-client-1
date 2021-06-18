@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { VehicleBasic } from '../models/vehicle-basic';
 import { VehicleResponse } from '../models/vehicle-response';
 import { VehicleListing } from '../models/vehicle-listing';
+import { MessageDTO } from '../models/MessageDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,10 @@ export class StoreVehiclesService {
       );
   }
 
-  addVehicle(vehicle: VehicleListing) : Observable<VehicleListing> {
+  addVehicle(vehicle: VehicleListing) : Observable<MessageDTO> {
     const headers = { 'content-type': 'application/json'};
     const body = JSON.stringify(vehicle);
-    return this.http.post<VehicleListing>(this.endpoint, body, {'headers': headers})
+    return this.http.post<MessageDTO>(this.endpoint, body, {'headers': headers})
       .pipe(
         tap(
           success => {this.status = success},

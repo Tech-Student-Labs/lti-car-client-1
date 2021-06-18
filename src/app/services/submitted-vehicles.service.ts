@@ -66,4 +66,16 @@ export class SubmittedVehiclesService {
         headers: tokenHeader,
       });
   }
+
+  DeleteVehicleSubmission(vin: string): Observable<MessageDTO>
+  {
+    return this.http.delete<MessageDTO>(`${this.endpoint}/${vin}`)
+      .pipe(
+        tap(
+          success => {this.status = success},
+          err => {this.status = err}
+        ),
+        catchError(data => of(data))
+      );
+  }
 }
