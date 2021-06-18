@@ -1,26 +1,21 @@
 .imageContainer {
     background-image:url("../../../assets/cardealership2mod.png");
     background-repeat:no-repeat;
-    background-size:contain;
+    background-size:cover;
     background-position:center;
     width:100%;
-    height:700px;
+    height:500px;
+    margin-bottom: 30px;
 }
 
 .imageContainer h2, .imageContainer p {
+    width: 80%;
     text-align: center;
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.imageContainer h2 {
-    bottom: 10%;
-}
-
-.imageContainer p {
-    bottom: 30%;
+    text-shadow:0 0 0 #f00, 0 0 1px transparent;
 }
 
 .card-group {
