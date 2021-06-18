@@ -31,15 +31,11 @@ describe('VehicleDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render vehicle model', () => {
-    expect(fixture.nativeElement.querySelector('#vehicle-model')).toBeTruthy();
-  });
-
-  it('should render vehicle year', () => {
-    expect(fixture.nativeElement.querySelector('#vehicle-year')).toBeTruthy();
+  it('should render vehicle make, model, year', () => {
+    expect(fixture.nativeElement.querySelector('.card-title')).toBeTruthy();
   });
 
   it('should render vehicle vin', () => {
-    expect(fixture.nativeElement.querySelector('#vehicle-vinNumber')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.card-text')).toBeTruthy();
   });
 });
