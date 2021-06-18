@@ -1,19 +1,16 @@
 footer {
-  text-align: center;
-  padding: 3px;
-  background-color: rgb(92, 92, 92);
-  color: white;
+    text-align: center;
+    padding: 3px;
+    background-color: rgb(92, 92, 92);
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 12rem;  
 }
 
 footer h5 {
     padding-top: 30px;
-}
-
-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    height: 12rem;    
 }
 
 footer .copyright {
@@ -32,4 +29,35 @@ footer .copyright {
 .contact {
     float:right;
     margin:20px;
+}
+
+@media only screen and (max-width: 1010px) {
+    .about {
+        margin: 0;
+        float:none;
+        padding:0;
+    }
+
+    .contact {
+        margin: 0;
+        float:none;
+        padding:0;
+    }
+
+    .about h5 {
+        margin:0;
+        padding:0;
+    }
+
+    .contact h5 {
+        margin:0;
+        padding:0;
+    }
+
+    .copyright {
+        display:block;
+        margin:0;
+        padding:0;
+        width:100%;
+    }
 }
