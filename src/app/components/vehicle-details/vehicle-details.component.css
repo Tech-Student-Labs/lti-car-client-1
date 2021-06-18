@@ -22,3 +22,8 @@ img {
     margin:auto;
     padding-bottom: 20px;
 }
+
+.button {
+    background-color: black;
+    color: rgb(153, 153, 153);
+}
