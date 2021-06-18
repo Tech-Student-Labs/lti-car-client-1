@@ -1,4 +1,8 @@
-.errorMsg {
+.Msg {
+    color: green;
+}
+
+.errMsg {
     color: red;
 }
 
@@ -6,5 +10,4 @@
     float: left;
     width: 50%;
     padding: 10px;
-    height: 350px;
   }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { MessageDTO } from '../models/MessageDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  SignupUser(email: string, username: string, password: string, firstName: string, lastName: string): Observable<string> {
-    return this.http.post<string>(this.api, {email: email, userName: username, password: password, firstName: firstName, lastName: lastName});
+  SignupUser(email: string, username: string, password: string, firstName: string, lastName: string): Observable<MessageDTO> {
+    return this.http.post<MessageDTO>(this.api, {email: email, userName: username, password: password, firstName: firstName, lastName: lastName});
   }
 }

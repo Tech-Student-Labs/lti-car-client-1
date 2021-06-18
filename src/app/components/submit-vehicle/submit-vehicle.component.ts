@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageDTO } from 'src/app/models/MessageDTO';
 import { SubmittedVehicles } from 'src/app/models/submitted-vehicles';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
 import { GetVehiclemakesService } from 'src/app/services/get-vehiclemakes.service';
@@ -24,15 +25,17 @@ export class SubmitVehicleComponent implements OnInit {
   public finalMarketValue: any;
   public valueFinalized: boolean = false;
   public message: string = '';
+  public postMessage: string = '';
+  public postMessage2: string = '';
   public submitVehiclesGroup!: FormGroup;
 
   ngOnInit() {
     this.submitVehiclesGroup = this.fb.group({
-      type: ['', [Validators.required, Validators.minLength(1)]],
-      make: ['', [Validators.required, Validators.minLength(1)]],
-      model: ['', [Validators.required, Validators.minLength(1)]],
-      year: ['', [Validators.required, Validators.minLength(1)]],
-      vin: ['', [Validators.required, Validators.minLength(1)]]
+      type: ['', [Validators.required]],
+      make: ['', [Validators.required]],
+      model: ['', [Validators.required]],
+      year: ['', [Validators.required, Validators.min(1887), Validators.max((new Date()).getFullYear()+1)]],
+      vin: ['', [Validators.required, Validators.minLength(17), Validators.maxLength(17)]]
     });
   }
 
@@ -92,12 +95,14 @@ export class SubmitVehicleComponent implements OnInit {
     );
     let submission: SubmittedVehicles = new SubmittedVehicles('', new Date(), vehicleResponse);
     this.submittedVehicles.AddVehicleSubmission(submission).subscribe(
-      (data) => {
-        this.message = data;
+      (data: MessageDTO) => {
+        this.postMessage = data.message;
+        this.postMessage2 = "";
       },
       (error) => {
-        this.message = error;
+        this.postMessage2 = error.error.Message;
+        this.postMessage = "";
       }
-    )
+    );
   }
 }

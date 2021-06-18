@@ -6,7 +6,6 @@
     float: left;
     width: 50%;
     padding: 10px;
-    height: 170px;
   }
   
   .column2 {
@@ -23,6 +22,6 @@
       color: green;
   }
   
-  .errorMsg {
-      color: red;
-  }
+  .errMsg {
+    color: red;
+}
