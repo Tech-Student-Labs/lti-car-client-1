@@ -1,0 +1,25 @@
+.card {
+    height: 250px;
+    margin:auto;
+    background-image: url("../../../assets/carhistorybkgd.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 20px;
+}
+
+h1, h2, h3, h4, h5, p {
+    text-align: right;
+    color: rgb(153, 153, 153);
+}
+
+img {
+    margin:auto;
+    padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 1010px) {
+    .card {
+        width: 400px;
+    }
+}
