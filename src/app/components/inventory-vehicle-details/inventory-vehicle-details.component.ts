@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageDTO } from 'src/app/models/MessageDTO';
 import { VehicleListing } from 'src/app/models/vehicle-listing';
 import { VehicleResponse } from 'src/app/models/vehicle-response';
@@ -15,9 +16,13 @@ export class InventoryVehicleDetailsComponent implements OnInit {
   message: string = '';
   marketValue: string = '';
 
-  constructor(private storeVehicleService: StoreVehiclesService, private submittedVehiclesService: SubmittedVehiclesService) { }
+  public priceGroup!: FormGroup;
+  constructor(private storeVehicleService: StoreVehiclesService, private fb: FormBuilder, private submittedVehiclesService: SubmittedVehiclesService) { }
 
   ngOnInit(): void {
+    this.priceGroup = this.fb.group({
+      price: ["", [Validators.required]],
+    });
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -28,7 +33,7 @@ export class InventoryVehicleDetailsComponent implements OnInit {
   }
 
   Accept(): void {
-    var price: number = parseInt((document.getElementById("priceInput") as HTMLInputElement).value);
+    var price: number = this.priceGroup.controls.price.value;
     if (price != null)
     {
       console.log(price); 

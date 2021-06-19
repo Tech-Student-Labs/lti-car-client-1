@@ -1,14 +1,16 @@
 <div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h5>
-            <div class="card-text-group">
-                <h3 class="card-text">{{ vehicle.vinNumber }}</h3>
-                <h1>Value: {{ marketValue }}</h1>
-                <input id="priceInput" type="text" value="0">
+    <form [formGroup]="priceGroup">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h5>
+                <div class="card-text-group">
+                    <h3 class="card-text">{{ vehicle.vinNumber }}</h3>
+                    <h1>Value: {{ marketValue }}</h1>
+                    <input formControlName="price" id="priceInput" type="text" value="0">
+                </div>
+                <button id="accept" type="submit" (click)="Accept()">Accept</button>
+                <button id="reject" type="button" (click)="Reject()">Reject</button>
             </div>
-            <button id="accept" type="submit" (click)="Accept()">Accept</button>
-            <button id="reject" type="button" (click)="Reject()">Reject</button>
         </div>
-    </div>
+    </form>
 </div>
