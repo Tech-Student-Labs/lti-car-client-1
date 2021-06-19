@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { VehicleBasic } from '../models/vehicle-basic';
@@ -30,7 +30,10 @@ export class StoreVehiclesService {
   }
 
   addVehicle(vehicle: VehicleListing) : Observable<MessageDTO> {
-    const headers = { 'content-type': 'application/json'};
+    var token = localStorage.getItem('token');
+    const headers = { 'content-type': 'application/json', Authorization: 'Bearer ' + token};
+
+
     const body = JSON.stringify(vehicle);
     return this.http.post<MessageDTO>(this.endpoint, body, {'headers': headers})
       .pipe(

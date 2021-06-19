@@ -23,14 +23,15 @@ export class InventoryVehicleDetailsComponent implements OnInit {
     var price: number = parseInt((document.getElementById("priceInput") as HTMLInputElement).value);
     if (price != null)
     {
+      console.log(price); 
       var listing: VehicleListing = new VehicleListing(this.vehicle.id, price, this.vehicle);
-      this.storeVehicleService.addVehicle(listing);
-      this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vinNumber);
+      this.storeVehicleService.addVehicle(listing).subscribe();
+      this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vinNumber).subscribe();
     }
   }
 
   Reject(): void {
-    this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vinNumber);
+    this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vinNumber).subscribe();
   }
 
 }
