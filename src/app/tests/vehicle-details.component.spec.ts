@@ -22,7 +22,7 @@ describe('VehicleDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VehicleDetailsComponent);
     component = fixture.componentInstance;
-    component.vehicle = new VehicleListing(0,0,new VehicleResponse(0,"","",0,"",0));
+    component.vehicle = new VehicleListing(0,new VehicleResponse(0,"","",0,"",0));
     ;
     fixture.detectChanges();
   });
