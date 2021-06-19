@@ -24,7 +24,7 @@ export class InventoryVehicleDetailsComponent implements OnInit {
     if (price != null)
     {
       console.log(price); 
-      var listing: VehicleListing = new VehicleListing(this.vehicle.id, price, this.vehicle);
+      var listing: VehicleListing = new VehicleListing(price, this.vehicle);
       this.storeVehicleService.addVehicle(listing).subscribe();
       this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vinNumber).subscribe();
     }
