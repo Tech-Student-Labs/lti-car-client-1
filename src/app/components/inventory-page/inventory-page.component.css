@@ -1,16 +1,13 @@
-.itemBlock {
-    width: 90vw;
-    text-align: center;
-}
-
-.itemContainer {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    margin: 1rem;
-    padding: 1rem;
-}
-
 .card {
   margin-top: 10px;
 }
 
+app-inventory-vehicle-details {
+  display:inline-block;
+}
+
+@media only screen and (max-width: 1010px) {
+  app-inventory-vehicle-details {
+    display:block;
+  }
+}

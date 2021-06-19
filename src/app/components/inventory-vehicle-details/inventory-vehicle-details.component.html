@@ -1,10 +1,14 @@
 <div>
-    <h3 id="vehicle-make">Make: {{vehicle.make}}</h3>
-    <h3 id="vehicle-model">{{vehicle.model}}</h3>
-    <p id="vehicle-year">Vehicle Year: {{vehicle.year}}</p>
-    <p id="vehicle-vinNumber">Vin: {{vehicle.vinNumber}}</p>
-    <p id="vehicle-marketValue">MarketValue: {{vehicle.marketValue}}</p>
-    <input id="priceInput" type="text" value="0">
-    <button id="accept" type="submit" (click)="Accept()">Accept</button>
-    <button id="reject" type="button" (click)="Reject()">Reject</button>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h5>
+            <div class="card-text-group">
+                <h3 class="card-text">{{ vehicle.vinNumber }}</h3>
+                <h1>Value: {{ marketValue }}</h1>
+                <input id="priceInput" type="text" value="0">
+            </div>
+            <button id="accept" type="submit" (click)="Accept()">Accept</button>
+            <button id="reject" type="button" (click)="Reject()">Reject</button>
+        </div>
+    </div>
 </div>

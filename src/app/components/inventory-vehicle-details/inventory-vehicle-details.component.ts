@@ -13,10 +13,18 @@ import { SubmittedVehiclesService } from 'src/app/services/submitted-vehicles.se
 export class InventoryVehicleDetailsComponent implements OnInit {
   @Input() vehicle: VehicleResponse = new VehicleResponse(0, "", "", 0, "", 0);
   message: string = '';
+  marketValue: string = '';
 
   constructor(private storeVehicleService: StoreVehiclesService, private submittedVehiclesService: SubmittedVehiclesService) { }
 
   ngOnInit(): void {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    })
+    
+    this.marketValue = formatter.format(this.vehicle.marketValue);
   }
 
   Accept(): void {
