@@ -40,11 +40,13 @@ export class InventoryVehicleDetailsComponent implements OnInit {
       var listing: VehicleListing = new VehicleListing(price, this.vehicle.vehicle);
       this.storeVehicleService.addVehicle(listing).subscribe();
       this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vehicle.vinNumber).subscribe();
+      location.reload();
     }
   }
 
   Reject(): void {
     this.submittedVehiclesService.DeleteVehicleSubmission(this.vehicle.vehicle.vinNumber).subscribe();
+    location.reload();
   }
 
 }
