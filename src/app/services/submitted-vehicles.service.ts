@@ -53,6 +53,28 @@ export class SubmittedVehiclesService {
       );
   }
 
+  getAll(): Observable<SubmittedVehicles[]>{
+    var token = localStorage.getItem('token');
+
+    var tokenHeader = new HttpHeaders({ Authorization: 'Bearer ' + token });
+
+    return this.http
+      .get<SubmittedVehicles[]>(this.endpoint,{
+        headers: tokenHeader,
+      })
+      .pipe(
+        tap(
+          (success) => {
+            this.status = success;
+          },
+          (err) => {
+            this.status = err;
+          }
+        ),
+        catchError((data) => of(data))
+      );
+  }
+
   AddVehicleSubmission(submission: SubmittedVehicles): Observable<MessageDTO>
   {
     var token = localStorage.getItem('token');
