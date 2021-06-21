@@ -1,9 +1,10 @@
- app-vehicle-details {
-  display:inline-block;
+app-vehicle-details {
+  display: inline-block;
   width: 30%;
   height: 400px;
   margin: 5px;
   transition: 0.5s;
+  margin-bottom: 3%;
 }
 
 app-vehicle-details:hover {

@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { VehicleResponse } from '../models/vehicle-response';
 import { Vehicle } from '../models/vehicle';
 import { VehicleListing } from '../models/vehicle-listing';
+import { MessageDTO } from '../models/MessageDTO';
 
 describe('StoreVehiclesService', () => {
   let service: StoreVehiclesService;
@@ -26,7 +27,7 @@ describe('StoreVehiclesService', () => {
   });
 
   it('getAll should return values', () => {
-    let apiData: VehicleListing[] =  [{vehicleId: 1,price: 2000, vehicle: {id : 1, make: "Ford", model: "Mustang", year:2019, vinNumber:"q98f7hq4", marketValue: 12000}}];
+    let apiData: VehicleListing[] =  [{price: 2000, vehicle: {id : 1, make: "Ford", model: "Mustang", year:2019, vinNumber:"q98f7hq4", marketValue: 12000}}];
     httpServiceSpy.get.and.returnValue(of(apiData));
     expect(service.getAll()).toBeDefined();
     service.getAll().subscribe( data => {
@@ -43,11 +44,11 @@ describe('StoreVehiclesService', () => {
   });
 
   it('addVehicle should be stubbed', () => {
-    let vehicle: VehicleListing =  new VehicleListing(1, 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
-    httpServiceSpy.post.and.returnValue(of(vehicle));
+    let vehicle: VehicleListing =  new VehicleListing(5000,new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
+    httpServiceSpy.post.and.returnValue(of(new MessageDTO("Successfuly Added")));
     expect(service.addVehicle(vehicle)).toBeDefined();
     service.addVehicle(vehicle).subscribe(data => {
-      expect(data).toEqual(vehicle);
+      expect(data).toEqual(new MessageDTO("Successfuly Added"));
       expect(data).toBeTruthy();
       expect(data).toBeDefined();
     });
@@ -55,12 +56,12 @@ describe('StoreVehiclesService', () => {
 
   it('addVehicle should return an error when given wrong format', async() => {
     await httpServiceSpy.post.and.returnValue(throwError("bad data"));
-    await service.addVehicle(new VehicleListing(1, 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000))).subscribe()
+    await service.addVehicle(new VehicleListing( 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000))).subscribe()
     expect(service.status).toEqual("bad data");
   });
 
   it('updateVehicle should be stubbed', () => {
-    let vehicle: VehicleListing =  new VehicleListing(1, 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
+    let vehicle: VehicleListing =  new VehicleListing(2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
     httpServiceSpy.put.and.returnValue(of(vehicle));
     expect(service.updateVehicle(vehicle)).toBeDefined();
     service.updateVehicle(vehicle).subscribe(data => {
@@ -72,12 +73,12 @@ describe('StoreVehiclesService', () => {
 
   it('updateVehicle should return an error when given wrong format', async() => {
     await httpServiceSpy.put.and.returnValue(throwError("bad data"));
-    await service.updateVehicle(new VehicleListing(1, 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000))).subscribe()
+    await service.updateVehicle(new VehicleListing(2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000))).subscribe()
     expect(service.status).toEqual("bad data");
   });
 
   it('deleteVehicle should be stubbed', () => {
-    let vehicle: VehicleListing =  new VehicleListing(1, 2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
+    let vehicle: VehicleListing =  new VehicleListing(2000, new VehicleResponse(1, "Ford", "Mustang", 2019, "q98f7hq4", 12000));
     httpServiceSpy.delete.and.returnValue(of(vehicle));
     expect(service.deleteVehicle(1)).toBeDefined();
     service.deleteVehicle(1).subscribe(data => {

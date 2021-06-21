@@ -12,7 +12,7 @@ import { VehicleResponse } from 'src/app/models/vehicle-response';
 })
 export class VehicleDetailsComponent implements OnInit {
 
-  @Input() vehicle: VehicleListing = new VehicleListing(0,0,new VehicleResponse(0,"","",0,"",0));
+  @Input() vehicle: VehicleListing = new VehicleListing(0,new VehicleResponse(0,"","",0,"",0));
 
   constructor() { }
 

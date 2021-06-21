@@ -1,12 +1,10 @@
 import { VehicleResponse } from "./vehicle-response";
 
 export class VehicleListing {
-    vehicleId: number;
     price: number;
     vehicle: VehicleResponse;
     
-    constructor(vehicleId: number, price: number, vehicle: VehicleResponse){ 
-        this.vehicleId = vehicleId;
+    constructor(price: number, vehicle: VehicleResponse){ 
         this.price = price;
         this.vehicle = vehicle;
     }
